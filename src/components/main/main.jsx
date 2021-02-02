@@ -85,9 +85,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <React.Fragment>
-                  {hotelNames.map((name, i) => <Offer key={id + i} name={name} imgId={i + 1} />)}
-                  {hotelNames.map((name, i) => <Offer key={id + i} name={name} imgId={i + 1} />)}
-                  {hotelNames.map((name, i) => <Offer key={id + i} name={name} imgId={i + 1} />)}
+                  {hotelNames.map((name, i) => <Offer key={id + i} name={name} />)}
                 </React.Fragment>
               </div>
             </section>
@@ -103,7 +101,9 @@ const Main = (props) => {
 
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  hotelNames: PropTypes.string.isRequired,
+  hotelNames: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+  )
 };
 
 export default Main;

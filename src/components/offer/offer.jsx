@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import {getRandomInteger} from '../../utils';
 
 const Offer = (props) => {
-  const {name, imgId} = props;
+  const {name} = props;
 
-  const imgSrc = `img/apartment-0${imgId}.jpg`;
+  const IMAGE_MIN_ID = 1;
+  const IMAGE_MAX_ID = 3;
+
   const price = getRandomInteger(50, 1000);
+  const imageId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
+  const imageSrc = `img/apartment-0${imageId}.jpg`;
 
   const getPremiumElement = () => <div className="place-card__mark"><span>Premium</span></div>;
   const isTrue = Boolean(getRandomInteger(0, 1));
@@ -16,7 +20,7 @@ const Offer = (props) => {
       {isTrue && getPremiumElement()}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={imgSrc} width={260} height={200} alt="Place image" />
+          <img className="place-card__image" src={imageSrc} width={260} height={200} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -48,8 +52,7 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  name: PropTypes.string.isRequired,
-  imgId: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default Offer;

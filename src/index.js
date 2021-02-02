@@ -10,6 +10,8 @@ const hotelNames = [
   `Beautiful & luxurious apartment at great location`,
   `Wood and stone place`,
   `Canal View Prinsengracht`,
+  `The Joshua Tree`,
+  `The Pondhouse - A Magical`
 ];
 
 ReactDOM.render(

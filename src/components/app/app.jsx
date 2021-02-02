@@ -12,7 +12,9 @@ const App = (props) => {
 
 App.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  hotelNames: PropTypes.string.isRequired,
+  hotelNames: PropTypes.arrayOf(
+      PropTypes.string.isRequired,
+  )
 };
 
 export default App;
