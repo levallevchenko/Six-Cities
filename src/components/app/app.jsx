@@ -13,24 +13,24 @@ const App = (props) => {
 
   return (
     <BrowserRouter>
-       <Switch>
-         <Route exact path="/">
+      <Switch>
+        <Route exact path="/">
           <Main placesCount={placesCount} offers = {offers} />
-         </Route>
-         <Route exact path="/offer/:id">
-           <Room />
-         </Route>
-         <Route exact path="/login">
-           <Login />
-         </Route>
-         <Route exact path="/favorites">
-           <Favorites />
-         </Route>
-         <Route>
-           <NotFound />
-         </Route>
-       </Switch>
-     </BrowserRouter>
+        </Route>
+        <Route exact path="/offer/:id">
+          <Room />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/favorites">
+          <Favorites />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

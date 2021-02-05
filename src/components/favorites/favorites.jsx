@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Favorites = () => {
 
@@ -61,7 +62,7 @@ const Favorites = () => {
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{width: '100%'}} />
+                          <span style={{width: `100%`}} />
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -92,7 +93,7 @@ const Favorites = () => {
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{width: '80%'}} />
+                          <span style={{width: `80%`}} />
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -134,7 +135,7 @@ const Favorites = () => {
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{width: '100%'}} />
+                          <span style={{width: `100%`}} />
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -157,6 +158,6 @@ const Favorites = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Favorites;
