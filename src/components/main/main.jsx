@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid';
 import Offer from '../offer/offer';
+import {offerPropTypes} from '../../prop-types/offer';
 
 const Main = (props) => {
-  const {placesCount, hotelNames} = props;
+  const {placesCount, offers} = props;
   const [id] = React.useState(nanoid);
 
   return (
@@ -85,7 +85,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <React.Fragment>
-                  {hotelNames.map((name, i) => <Offer key={id + i} name={name} />)}
+                  {offers.map((offer, i) => <Offer key={id + i} offer={offer} />)}
                 </React.Fragment>
               </div>
             </section>
@@ -99,11 +99,6 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  hotelNames: PropTypes.arrayOf(
-      PropTypes.string.isRequired,
-  )
-};
+Main.propTypes = offerPropTypes;
 
 export default Main;
