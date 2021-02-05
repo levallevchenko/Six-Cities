@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const NotFound = () => {
 
@@ -8,22 +9,21 @@ const NotFound = () => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to="/">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </header>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
-          <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Page Not Found</span>
-              </a>
-            </div>
-          </section>
+        <h1 style={{fontSize: `40px`}}>404. Page Not Found</h1>
+        <section className="locations locations--login locations--current">
+          <Link className="locations__item-link" style={{fontSize: `40px`}} to="/">
+            <span>Return to main page</span>
+          </Link>
+        </section>
         </div>
       </main>
     </div>

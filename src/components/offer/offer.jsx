@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
 
 const Offer = (props) => {
@@ -10,9 +11,9 @@ const Offer = (props) => {
     <article className="cities__place-card place-card">
       {offer.isPremium && getPremiumElement()}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to="/offer/1">
           <img className="place-card__image" src={offer.imageSrc} width={260} height={200} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -34,7 +35,7 @@ const Offer = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.hotelName}</a>
+          <Link to="/offer/1">{offer.hotelName}</Link>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
