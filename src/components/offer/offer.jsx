@@ -12,7 +12,7 @@ const Offer = (props) => {
       {offer.isPremium && getPremiumElement()}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to="/offer/1">
-          <img className="place-card__image" src={offer.imageSrc} width={260} height={200} alt="Place image" />
+          <img className="place-card__image" src={offer.previewSrc} width={260} height={200} alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">
