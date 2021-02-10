@@ -5,4 +5,4 @@ export const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-export const isElementExist = () => Boolean(getRandomInteger(0, 1));
+export const getRandomBoolean = () => Boolean(getRandomInteger(0, 1));

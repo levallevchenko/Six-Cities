@@ -1,4 +1,4 @@
-import {getRandomInteger, isElementExist} from '../utils';
+import {getRandomInteger, getRandomBoolean} from '../utils';
 
 const OFFER_COUNT = 5;
 const IMAGE_MIN_ID = 1;
@@ -17,7 +17,7 @@ export const generateOffer = (index) => {
   const imageId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
   const imageSrc = `img/apartment-0${imageId}.jpg`;
   const hotelName = hotelNames[index];
-  const isPremium = isElementExist();
+  const isPremium = getRandomBoolean();
   const price = getRandomInteger(50, 1000);
 
   return {
