@@ -18,8 +18,6 @@ const PRICE_MAX_VALUE = 1000;
 const AVATAR_MIN_ID = 1;
 const AVATAR_MAX_ID = 2;
 
-
-
 const hotelNames = [
   `Beautiful & luxurious apartment at great location`,
   `Wood and stone place`,
@@ -43,7 +41,7 @@ const goodsArray = [
   `Dishwasher`,
   `Cabel TV`,
   `Fridge`
-]
+];
 
 const userNames = [
   `Angelina`,
@@ -55,21 +53,21 @@ const userNames = [
   `Denis`,
   `Jack`,
   `James`
-]
+];
 
 const offerTypes = [
   `room`,
   `hotel`,
   `house`,
   `apartment`
-]
+];
 
 export const generateOffer = (index) => {
   const bedrooms = getRandomInteger(BEDROOMS_MIN_COUNT, BEDROOMS_MAX_COUNT);
   const description = generateRandomArray(descriptionArray, DESCRIPTION_MIN_COUNT, DESCRIPTION_MAX_COUNT);
   const goods = generateRandomArray(goodsArray, GOODS_MIN_COUNT, GOODS_MAX_COUNT);
   const avatarUrl = `img/${getRandomInteger(AVATAR_MIN_ID, AVATAR_MAX_ID)}.png`;
-  const userID = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);;
+  const userID = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
   const isUserPro = getRandomBoolean();
   const userName = getElementFromArray(userNames);
   const hotelId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
@@ -103,7 +101,7 @@ export const generateOffer = (index) => {
     rating,
     hotelName,
     offerType
-  }
+  };
 
   return offer;
 };
