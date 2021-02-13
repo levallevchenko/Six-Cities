@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {nanoid} from 'nanoid';
 import {offerPropTypes} from '../../prop-types/offer';
-import Offer from '../offer/offer';
+import OfferList from '../offer-list/offer-list';
 
 const Main = (props) => {
   const {placesCount, offers} = props;
@@ -83,11 +82,7 @@ const Main = (props) => {
                   </svg>
                 </span>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <React.Fragment>
-                  {offers.map((offer) => <Offer key={nanoid()} offer={offer} />)}
-                </React.Fragment>
-              </div>
+              <OfferList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />
