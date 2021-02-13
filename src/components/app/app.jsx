@@ -18,7 +18,7 @@ const App = (props) => {
           <Main placesCount={placesCount} offers = {offers} />
         </Route>
         <Route exact path="/offer/:id">
-          <Room />
+          <Room offers = {offers} />
         </Route>
         <Route exact path="/login">
           <Login />

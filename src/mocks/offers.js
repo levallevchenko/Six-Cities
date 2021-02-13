@@ -15,8 +15,6 @@ const RATING_MIN_VALUE = 1;
 const RATING_MAX_VALUE = 5;
 const PRICE_MIN_VALUE = 50;
 const PRICE_MAX_VALUE = 1000;
-const AVATAR_MIN_ID = 1;
-const AVATAR_MAX_ID = 2;
 
 const hotelNames = [
   `Beautiful & luxurious apartment at great location`,
@@ -55,6 +53,11 @@ const userNames = [
   `James`
 ];
 
+const avatarNames = [
+  `Angelina`,
+  `Max`,
+];
+
 const offerTypes = [
   `room`,
   `hotel`,
@@ -63,15 +66,16 @@ const offerTypes = [
 ];
 
 export const generateOffer = (index) => {
+  const previewId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
   const bedrooms = getRandomInteger(BEDROOMS_MIN_COUNT, BEDROOMS_MAX_COUNT);
   const description = generateRandomArray(descriptionArray, DESCRIPTION_MIN_COUNT, DESCRIPTION_MAX_COUNT);
   const goods = generateRandomArray(goodsArray, GOODS_MIN_COUNT, GOODS_MAX_COUNT);
-  const avatarUrl = `img/${getRandomInteger(AVATAR_MIN_ID, AVATAR_MAX_ID)}.png`;
+  const avatarUrl = `img/avatar-${getElementFromArray(avatarNames).toLowerCase()}.jpg`;
   const userID = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
   const isUserPro = getRandomBoolean();
   const userName = getElementFromArray(userNames);
-  const hotelId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
-  const previewSrc = `img/apartment-0${hotelId}.jpg`;
+  const hotelId = index;
+  const previewSrc = `img/apartment-0${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();
   const hotelImages = previewSrc;

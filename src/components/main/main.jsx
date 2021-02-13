@@ -6,7 +6,6 @@ import Offer from '../offer/offer';
 
 const Main = (props) => {
   const {placesCount, offers} = props;
-  const [id] = React.useState(nanoid);
 
   return (
     <div className="page page--gray page--main">
@@ -86,7 +85,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <React.Fragment>
-                  {offers.map((offer, i) => <Offer key={id + i} offer={offer} />)}
+                  {offers.map((offer) => <Offer key={nanoid()} offer={offer} />)}
                 </React.Fragment>
               </div>
             </section>
