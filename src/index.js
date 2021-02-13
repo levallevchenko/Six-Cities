@@ -7,9 +7,14 @@ const Setting = {
   PLACES_COUNT: 312
 };
 
+const CardType = {
+  MAIN: `MAIN`,
+  FAVORITE: `FAVORITE`
+};
+
 ReactDOM.render(
     <App
-      placesCount={Setting.PLACES_COUNT} offers = {offers}
+      placesCount={Setting.PLACES_COUNT} offers = {offers} CardType = {CardType}
     />,
     document.querySelector(`#root`)
 );

@@ -4,7 +4,7 @@ import {offerPropTypes} from '../../prop-types/offer';
 import OfferList from '../offer-list/offer-list';
 
 const Main = (props) => {
-  const {placesCount, offers} = props;
+  const {placesCount, offers, CardType} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -82,7 +82,7 @@ const Main = (props) => {
                   </svg>
                 </span>
               </form>
-              <OfferList offers={offers} />
+              <OfferList offers={offers} CardType = {CardType} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

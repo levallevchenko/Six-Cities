@@ -23,3 +23,9 @@ export const getElementFromArray = (array) => {
 
   return array[randomIndex];
 };
+
+export const getUniqueArray = (array) => {
+  const arraySet = new Set(array);
+  const uniqueArray = Array.from(arraySet);
+  return uniqueArray;
+};

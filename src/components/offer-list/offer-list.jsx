@@ -4,12 +4,12 @@ import {offerPropTypes} from '../../prop-types/offer';
 import Offer from '../offer/offer';
 
 const OfferList = (props) => {
-  const {offers} = props;
+  const {offers, CardType} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
       <React.Fragment>
-        {offers.map((offer) => <Offer key={nanoid()} offer={offer} />)}
+        {offers.map((offer) => <Offer key={nanoid()} offer={offer} CardType={CardType} />)}
       </React.Fragment>
     </div>
   );

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 export const offerPropTypes = {
   offers: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
     bedrooms: PropTypes.number.isRequired,
+    city: PropTypes.objectOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    })),
     description: PropTypes.string.isRequired,
     goods: PropTypes.arrayOf(PropTypes.string.isRequired),
     host: PropTypes.objectOf(PropTypes.shape({

@@ -21,7 +21,18 @@ const hotelNames = [
   `Wood and stone place`,
   `Canal View Prinsengracht`,
   `The Joshua Tree`,
-  `The Pondhouse - A Magical`
+  `The Pondhouse - A Magical`,
+  `Waterfront with extraordinary view`,
+  `House in countryside`
+];
+
+const cityNames = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
 ];
 
 const descriptionString = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`;
@@ -68,6 +79,7 @@ const offerTypes = [
 export const generateOffer = (index) => {
   const previewId = getRandomInteger(IMAGE_MIN_ID, IMAGE_MAX_ID);
   const bedrooms = getRandomInteger(BEDROOMS_MIN_COUNT, BEDROOMS_MAX_COUNT);
+  const name = getElementFromArray(cityNames);
   const description = generateRandomArray(descriptionArray, DESCRIPTION_MIN_COUNT, DESCRIPTION_MAX_COUNT);
   const goods = generateRandomArray(goodsArray, GOODS_MIN_COUNT, GOODS_MAX_COUNT);
   const avatarUrl = `img/avatar-${getElementFromArray(avatarNames).toLowerCase()}.jpg`;
@@ -79,7 +91,7 @@ export const generateOffer = (index) => {
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();
   const hotelImages = previewSrc;
-  const hotelName = hotelNames[index];
+  const hotelName = getElementFromArray(hotelNames);
   const price = getRandomInteger(PRICE_MIN_VALUE, PRICE_MAX_VALUE);
   const maxAdults = getRandomInteger(ADULTS_MIN_COUNT, ADULTS_MAX_COUNT);
   const rating = getRandomNumber(RATING_MIN_VALUE, RATING_MAX_VALUE).toFixed(1);
@@ -87,6 +99,9 @@ export const generateOffer = (index) => {
 
   const offer = {
     bedrooms,
+    city: {
+      name,
+    },
     description,
     goods,
     host: {
