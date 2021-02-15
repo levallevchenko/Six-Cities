@@ -10,7 +10,7 @@ export const offerPropTypes = {
     goods: PropTypes.arrayOf(PropTypes.string.isRequired),
     host: PropTypes.objectOf(PropTypes.shape({
       avatarUrl: PropTypes.string,
-      userID: PropTypes.number.isRequired,
+      userId: PropTypes.number.isRequired,
       isUserPro: PropTypes.bool.isRequired,
       userName: PropTypes.string.isRequired,
     })),

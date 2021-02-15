@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -16,6 +18,11 @@ export const generateRandomArray = (array, minCount, maxCount) => {
 
 export const getRandomNumber = (min, max) => {
   return Math.random() * (max - min) + min;
+};
+
+export const generateRandomDate = function (start, end) {
+  const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  return dayjs(randomDate);
 };
 
 export const getElementFromArray = (array) => {
