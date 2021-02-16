@@ -1,5 +1,4 @@
 import React from 'react';
-import {nanoid} from 'nanoid';
 import {reviewPropTypes} from '../../prop-types/review';
 import Review from '../review/review';
 
@@ -12,7 +11,7 @@ const ReviewList = (props) => {
     <React.Fragment>
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviewsCount}</span></h2>
       <ul className="reviews__list">
-        {reviews.map((review) => <Review key={nanoid()} review={review} />)}
+        {reviews.map((review) => <Review key={review.id} review={review} />)}
       </ul>
     </React.Fragment>
   );

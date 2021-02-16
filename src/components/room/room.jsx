@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {nanoid} from 'nanoid';
 import {offerPropTypes} from '../../prop-types/offer';
 import ReviewList from '../review-list/review-list';
 import Form from '../review-form/review-form';
@@ -112,8 +111,8 @@ const Room = (props) => {
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {/* {goods.map((good, i) => <Good key={good + i} good={good} />)} */}
-                  {goods.map((good) => {
-                    return <li className="property__inside-item" key={nanoid()}>
+                  {goods.map((good, i) => {
+                    return <li className="property__inside-item" key={{good} + i}>
                       {good}
                     </li>;
                   })}

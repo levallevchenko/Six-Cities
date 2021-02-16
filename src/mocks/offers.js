@@ -1,7 +1,8 @@
+import {nanoid} from 'nanoid';
 import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray} from '../utils';
 import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes} from './data';
 
-export const generateOffer = (index) => {
+export const generateOffer = () => {
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
   const name = getElementFromArray(cityNames);
@@ -11,7 +12,7 @@ export const generateOffer = (index) => {
   const userId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const isUserPro = getRandomBoolean();
   const userName = getElementFromArray(userNames);
-  const hotelId = index;
+  const hotelId = nanoid();
   const previewSrc = `img/apartment-0${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();

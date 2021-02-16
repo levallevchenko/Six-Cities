@@ -4,7 +4,7 @@ export const reviewPropTypes = {
   reviews: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
     comment: PropTypes.string.isRequired,
     date: PropTypes.number.isRequired,
-    reviewId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     user: PropTypes.objectOf(PropTypes.shape({
       avatarUrl: PropTypes.string.isRequired,
