@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
 import {getUniqueArray} from '../../utils';
-import CityFavorites from '../favorites-item/favorites-item';
+import CityFavorites from '../city-favorites/city-favorites';
 
 const Favorites = (props) => {
   const {offers, CardType} = props;
