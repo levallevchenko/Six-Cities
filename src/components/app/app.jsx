@@ -18,7 +18,7 @@ const App = (props) => {
           <Main placesCount={placesCount} offers = {offers} CardType = {CardType.MAIN} />
         </Route>
         <Route exact path="/offer/:id">
-          <Room offers = {offers} reviews = {reviews} />
+          <Room offer = {offers[0]} reviews = {reviews} />
         </Route>
         <Route exact path="/login">
           <Login />

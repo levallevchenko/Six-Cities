@@ -1,18 +1,8 @@
 export const OFFER_COUNT = 8;
 
-export const maxCountData = {
-  IMAGE_ID: 20,
-  BEDROOMS_COUNT: 7,
-  DESCRIPTION_COUNT: 9,
-  GOODS_COUNT: 10,
-  ADULTS_COUNT: 8,
-  RATING_VALUE: 5,
-  PRICE_VALUE: 1000,
-  REVIEW_COUNT: 0,
-};
-
 export const minCountData = {
-  IMAGE_ID: 0,
+  IMAGE_ID: 1,
+  IMAGE_COUNT: 1,
   BEDROOMS_COUNT: 1,
   DESCRIPTION_COUNT: 1,
   GOODS_COUNT: 2,
@@ -20,6 +10,18 @@ export const minCountData = {
   RATING_VALUE: 1,
   PRICE_VALUE: 50,
   REVIEW_COUNT: 10,
+};
+
+export const maxCountData = {
+  IMAGE_ID: 20,
+  IMAGE_COUNT: 6,
+  BEDROOMS_COUNT: 7,
+  DESCRIPTION_COUNT: 9,
+  GOODS_COUNT: 10,
+  ADULTS_COUNT: 8,
+  RATING_VALUE: 5,
+  PRICE_VALUE: 1000,
+  REVIEW_COUNT: 0,
 };
 
 export const hotelNames = [

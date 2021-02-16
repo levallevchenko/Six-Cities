@@ -2,6 +2,18 @@ import {nanoid} from 'nanoid';
 import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray} from '../utils';
 import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes} from './data';
 
+const generateImages = () => {
+  const images = [];
+  for (let i = minCountData.IMAGE_COUNT; i < maxCountData.IMAGE_COUNT; i++) {
+    const image = `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/${i}.jpg`;
+    images.push(image);
+  }
+
+  return images;
+};
+
+const imagesArray = generateImages();
+
 export const generateOffer = () => {
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
@@ -16,7 +28,7 @@ export const generateOffer = () => {
   const previewSrc = `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();
-  const hotelImages = previewSrc;
+  const hotelImages = generateRandomArray(imagesArray, minCountData.IMAGE_COUNT, maxCountData.IMAGE_COUNT);
   const hotelName = getElementFromArray(hotelNames);
   const price = getRandomInteger(minCountData.PRICE_VALUE, maxCountData.PRICE_VALUE);
   const maxAdults = getRandomInteger(minCountData.ADULTS_COUNT, maxCountData.ADULTS_COUNT);
@@ -47,6 +59,8 @@ export const generateOffer = () => {
     hotelName,
     offerType
   };
+
+  console.log(maxCountData.IMAGE_COUNT);
 
   return offer;
 };

@@ -5,10 +5,8 @@ import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 
 const Room = (props) => {
-  const {offers, reviews} = props;
-  const id = window.location.pathname.slice(-1);
-  const offer = offers[id];
-  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium} = offer;
+  const {offer, reviews} = props;
+  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages} = offer;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
 
   // const Good = (props) => {
@@ -48,24 +46,11 @@ const Room = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-              </div>
+              {hotelImages.map((image, i) => {
+                return <div className="property__image-wrapper" key={{image} + i}>
+                  <img className="property__image" src={image} alt="Photo studio" />
+                </div>;
+              })}
             </div>
           </div>
           <div className="property__container container">
