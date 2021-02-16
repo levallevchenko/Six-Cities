@@ -1,7 +1,7 @@
 export const OFFER_COUNT = 8;
 
 export const maxCountData = {
-  IMAGE_ID: 3,
+  IMAGE_ID: 20,
   BEDROOMS_COUNT: 7,
   DESCRIPTION_COUNT: 9,
   GOODS_COUNT: 10,
@@ -12,7 +12,7 @@ export const maxCountData = {
 };
 
 export const minCountData = {
-  IMAGE_ID: 1,
+  IMAGE_ID: 0,
   BEDROOMS_COUNT: 1,
   DESCRIPTION_COUNT: 1,
   GOODS_COUNT: 2,

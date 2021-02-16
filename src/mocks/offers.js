@@ -13,7 +13,7 @@ export const generateOffer = () => {
   const isUserPro = getRandomBoolean();
   const userName = getElementFromArray(userNames);
   const hotelId = nanoid();
-  const previewSrc = `img/apartment-0${previewId}.jpg`;
+  const previewSrc = `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();
   const hotelImages = previewSrc;
