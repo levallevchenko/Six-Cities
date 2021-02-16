@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
 import ReviewList from '../review-list/review-list';
-import Form from '../review-form/review-form';
+import ReviewForm from '../review-form/review-form';
 
 const Room = (props) => {
   const {offers, reviews} = props;
@@ -139,7 +139,7 @@ const Room = (props) => {
               </div>
               <section className="property__reviews reviews">
                 <ReviewList reviews={reviews} />
-                <Form />
+                <ReviewForm />
               </section>
             </div>
           </div>
