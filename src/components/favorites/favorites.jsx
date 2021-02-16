@@ -1,16 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
-import {getUniqueArray} from '../../utils';
 import CityFavorites from '../city-favorites/city-favorites';
+import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
 
 const Favorites = (props) => {
-  const {offers, CardType} = props;
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
-  const favoriteOfferCities = favoriteOffers.map((offer) => offer.city.name);
-  const uniqueOfferCities = getUniqueArray(favoriteOfferCities);
-
-  const getOffersInCity = (city) => favoriteOffers.filter((offer) => offer.city.name === city);
+  const {CardType} = props;
 
   return (
     <div className="page">
@@ -41,7 +36,7 @@ const Favorites = (props) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {uniqueOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType} city={city} />)}
+              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType} city={city} />)}
             </ul>
           </section>
         </div>
