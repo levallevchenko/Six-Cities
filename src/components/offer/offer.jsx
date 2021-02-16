@@ -4,8 +4,9 @@ import {offerPropTypes} from '../../prop-types/offer';
 
 const Offer = (props) => {
   const {offer, CardType} = props;
-  const {previewSrc, price, hotelName, hotelId, isPremium, isFavorite} = offer;
+  const {previewSrc, price, hotelName, hotelId, isPremium, isFavorite, offerType, rating} = offer;
   const roomLink = `/offer/${hotelId}`;
+  const ratingStarWidth = `${Math.round(rating) * 20}%`;
 
   // const getClass = (name) => {
   //   return name;
@@ -49,14 +50,14 @@ const Offer = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}} />
+            <span style={{width: ratingStarWidth}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={roomLink}>{hotelName}</Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{offerType}</p>
       </div>
     </article>
   );

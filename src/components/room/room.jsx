@@ -135,7 +135,7 @@ const Room = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer) => <Offer key={nearbyOffer.hotelId} offer={nearbyOffer} CardType={CardType} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType={CardType} />)}
             </div>
           </section>
         </div>

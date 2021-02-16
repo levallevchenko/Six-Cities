@@ -14,7 +14,7 @@ const generateImages = () => {
 
 const imagesArray = generateImages();
 
-export const generateOffer = () => {
+export const generateOffer = (index) => {
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
   const name = getElementFromArray(cityNames);
@@ -24,7 +24,7 @@ export const generateOffer = () => {
   const userId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const isUserPro = getRandomBoolean();
   const userName = getElementFromArray(userNames);
-  const hotelId = nanoid();
+  const hotelId = index + nanoid();
   const previewSrc = `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();

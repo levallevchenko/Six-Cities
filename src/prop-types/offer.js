@@ -18,7 +18,7 @@ export const offerPropTypes = {
     previewSrc: PropTypes.string.isRequired,
     isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,
-    hotelImages: PropTypes.string.isRequired,
+    hotelImages: PropTypes.arrayOf(PropTypes.string.isRequired),
     price: PropTypes.number.isRequired,
     maxAdults: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
