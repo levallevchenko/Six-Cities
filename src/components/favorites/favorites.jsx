@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {nanoid} from 'nanoid';
 import {offerPropTypes} from '../../prop-types/offer';
 import {getUniqueArray} from '../../utils';
-import FavoritesItem from '../favorites-item/favorites-item';
+import CityFavorites from '../favorites-item/favorites-item';
 
 const Favorites = (props) => {
   const {offers, CardType} = props;
@@ -42,7 +42,7 @@ const Favorites = (props) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {uniqueOfferCities.map((city) => <FavoritesItem key={nanoid()} offers={getOffersInCity(city)} CardType={CardType} city={city} />)}
+              {uniqueOfferCities.map((city) => <CityFavorites key={nanoid()} offers={getOffersInCity(city)} CardType={CardType} city={city} />)}
             </ul>
           </section>
         </div>

@@ -4,7 +4,7 @@ import {nanoid} from 'nanoid';
 import {offerPropTypes} from '../../prop-types/offer';
 import Offer from '../offer/offer';
 
-const FavoritesItem = (props) => {
+const CityFavorites = (props) => {
   const {offers, CardType, city} = props;
 
   return (
@@ -17,14 +17,12 @@ const FavoritesItem = (props) => {
         </div>
       </div>
       <div className="favorites__places">
-        <React.Fragment>
-          {offers.map((offer) => <Offer key={nanoid()} offer={offer} CardType={CardType} />)}
-        </React.Fragment>
+        {offers.map((offer) => <Offer key={nanoid()} offer={offer} CardType={CardType} />)}
       </div>
     </li>
   );
 };
 
-FavoritesItem.propTypes = offerPropTypes;
+CityFavorites.propTypes = offerPropTypes;
 
-export default FavoritesItem;
+export default CityFavorites;
