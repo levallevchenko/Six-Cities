@@ -7,9 +7,7 @@ const OfferList = (props) => {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      <React.Fragment>
-        {offers.map((offer) => <Offer key={offer.hotelId} offer={offer} CardType={CardType} />)}
-      </React.Fragment>
+      {offers.map((offer) => <Offer key={offer.hotelId} offer={offer} CardType={CardType} />)}
     </div>
   );
 };

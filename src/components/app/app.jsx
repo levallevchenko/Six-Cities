@@ -9,7 +9,7 @@ import NotFound from '../not-found/not-found';
 
 
 const App = (props) => {
-  const {placesCount, offers, reviews, CardType} = props;
+  const {placesCount, offers, reviews, nearbyOffersArray, CardType} = props;
 
   return (
     <BrowserRouter>
@@ -18,7 +18,7 @@ const App = (props) => {
           <Main placesCount={placesCount} offers = {offers} CardType = {CardType.MAIN} />
         </Route>
         <Route exact path="/offer/:id">
-          <Room offer = {offers[0]} reviews = {reviews} />
+          <Room offer = {offers[0]} reviews = {reviews} nearbyOffers = {nearbyOffersArray[0]} CardType = {CardType.MAIN} />
         </Route>
         <Route exact path="/login">
           <Login />

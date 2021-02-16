@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {offers} from '../src/mocks/offers';
+import {offers, nearbyOffersArray} from '../src/mocks/offers';
 import {reviews} from '../src/mocks/reviews';
 
 const Setting = {
@@ -15,7 +15,7 @@ const CardType = {
 
 ReactDOM.render(
     <App
-      placesCount={Setting.PLACES_COUNT} offers = {offers} reviews = {reviews} CardType = {CardType}
+      placesCount={Setting.PLACES_COUNT} offers = {offers} reviews = {reviews} nearbyOffersArray = {nearbyOffersArray} CardType = {CardType}
     />,
     document.querySelector(`#root`)
 );

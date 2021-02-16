@@ -10,6 +10,7 @@ export const minCountData = {
   RATING_VALUE: 1,
   PRICE_VALUE: 50,
   REVIEW_COUNT: 10,
+  NEARBY_PLACES_COUNT: 1
 };
 
 export const maxCountData = {
@@ -22,6 +23,7 @@ export const maxCountData = {
   RATING_VALUE: 5,
   PRICE_VALUE: 1000,
   REVIEW_COUNT: 0,
+  NEARBY_PLACES_COUNT: 10
 };
 
 export const hotelNames = [

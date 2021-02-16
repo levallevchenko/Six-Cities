@@ -60,8 +60,6 @@ export const generateOffer = () => {
     offerType
   };
 
-  console.log(maxCountData.IMAGE_COUNT);
-
   return offer;
 };
 
@@ -75,4 +73,17 @@ const generateOffers = () => {
   return offers;
 };
 
+const generateNearbyOffers = (offers) => {
+  const nearbyOffersArray = [];
+  offers.map((offer) => {
+    const nearbyOffers = generateRandomArray(offers, minCountData.NEARBY_PLACES_COUNT, maxCountData.NEARBY_PLACES_COUNT);
+
+    nearbyOffersArray.push(nearbyOffers);
+    offer.nearbyOffers = nearbyOffers;
+  });
+
+  return nearbyOffersArray;
+};
+
 export const offers = generateOffers();
+export const nearbyOffersArray = generateNearbyOffers(offers);
