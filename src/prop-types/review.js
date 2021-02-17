@@ -17,6 +17,6 @@ export const reviewPropTypes = {
 
 export const reviewStarPropTypes = {
   id: PropTypes.number.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
   rating: PropTypes.number.isRequired
 };

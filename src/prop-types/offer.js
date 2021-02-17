@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const offerPropTypes = {
-  offers: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     bedrooms: PropTypes.number.isRequired,
     city: PropTypes.objectOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -24,5 +24,5 @@ export const offerPropTypes = {
     rating: PropTypes.number.isRequired,
     hotelName: PropTypes.string.isRequired,
     offerType: PropTypes.string.isRequired
-  })))
+  })).isRequired
 };

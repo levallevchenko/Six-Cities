@@ -142,7 +142,7 @@ const Room = (props) => {
             <h3>CurrentOffer: {currentOfferId} </h3>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType={CardType} handleOfferFocus = {handleOfferFocus} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType={CardType} onOfferFocus = {handleOfferFocus} />)}
             </div>
           </section>
         </div>

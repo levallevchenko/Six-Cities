@@ -16,7 +16,7 @@ const OfferList = (props) => {
     <React.Fragment>
       <h3>CurrentOffer: {currentOfferId} </h3>
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <Offer handleOfferFocus = {handleOfferFocus}
+        {offers.map((offer) => <Offer onOfferFocus = {handleOfferFocus}
           key={offer.hotelId} offer={offer} CardType={CardType} />)}
       </div>
     </React.Fragment>
