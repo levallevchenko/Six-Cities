@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {useState} from 'react';
 import {offerPropTypes} from '../../prop-types/offer';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
@@ -18,6 +19,11 @@ const Room = (props) => {
   //     </li>
   //   );
   // }
+  const [currentOfferId, setCurrentOfferId] = useState(``);
+
+  const handleOfferFocus = (offerId) => {
+    setCurrentOfferId(offerId);
+  };
 
   return (
     <div className="page">
@@ -133,9 +139,10 @@ const Room = (props) => {
         </section>
         <div className="container">
           <section className="near-places places">
+            <h3>CurrentOffer: {currentOfferId} </h3>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType={CardType} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType={CardType} handleOfferFocus = {handleOfferFocus} />)}
             </div>
           </section>
         </div>
