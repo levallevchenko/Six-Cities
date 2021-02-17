@@ -13,11 +13,13 @@ const OfferList = (props) => {
   };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
-      <h3>CurrentOffer: {currentOfferId + 1} </h3>
-      {offers.map((offer) => <Offer handleOfferFocus = {handleOfferFocus}
-        key={offer.hotelId} offer={offer} CardType={CardType} />)}
-    </div>
+    <React.Fragment>
+      <h3>CurrentOffer: {currentOfferId} </h3>
+      <div className="cities__places-list places__list tabs__content">
+        {offers.map((offer) => <Offer handleOfferFocus = {handleOfferFocus}
+          key={offer.hotelId} offer={offer} CardType={CardType} />)}
+      </div>
+    </React.Fragment>
   );
 };
 

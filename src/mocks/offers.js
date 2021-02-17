@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray} from '../utils';
+import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, getUniqueArray} from '../utils';
 import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes} from './data';
 
 const generateImages = () => {
@@ -28,7 +28,7 @@ export const generateOffer = (index) => {
   const previewSrc = `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/${previewId}.jpg`;
   const isFavorite = getRandomBoolean();
   const isPremium = getRandomBoolean();
-  const hotelImages = generateRandomArray(imagesArray, minCountData.IMAGE_COUNT, maxCountData.IMAGE_COUNT);
+  const hotelImages = getUniqueArray(generateRandomArray(imagesArray, minCountData.IMAGE_COUNT, maxCountData.IMAGE_COUNT));
   const hotelName = getElementFromArray(hotelNames);
   const price = getRandomInteger(minCountData.PRICE_VALUE, maxCountData.PRICE_VALUE);
   const maxAdults = getRandomInteger(minCountData.ADULTS_COUNT, maxCountData.ADULTS_COUNT);
@@ -77,9 +77,10 @@ const generateNearbyOffers = (offers) => {
   const nearbyOffersArray = [];
   offers.map((offer) => {
     const nearbyOffers = generateRandomArray(offers, minCountData.NEARBY_PLACES_COUNT, maxCountData.NEARBY_PLACES_COUNT);
+    const uniqueNearbyOffers = getUniqueArray(nearbyOffers);
 
-    nearbyOffersArray.push(nearbyOffers);
-    offer.nearbyOffers = nearbyOffers;
+    nearbyOffersArray.push(uniqueNearbyOffers);
+    offer.uniqueNearbyOffers = uniqueNearbyOffers;
   });
 
   return nearbyOffersArray;
