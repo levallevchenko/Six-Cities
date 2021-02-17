@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
 
 const Offer = (props) => {
-  const {offer, CardType} = props;
+  const {offer, CardType, handleOfferFocus} = props;
   const {previewSrc, price, hotelName, hotelId, isPremium, isFavorite, offerType, rating} = offer;
   const roomLink = `/offer/${hotelId}`;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
@@ -26,7 +26,7 @@ const Offer = (props) => {
   const getPremiumElement = () => <div className="place-card__mark"><span>Premium</span></div>;
 
   return (
-    <article className={CardType === `FAVORITE` ? `favorites__card place-card` : `cities__place-card place-card`}>
+    <article onFocus={() => handleOfferFocus(hotelId)} onMouseEnter = {() => handleOfferFocus(hotelId)} className={CardType === `FAVORITE` ? `favorites__card place-card` : `cities__place-card place-card`}>
       {isPremium && getPremiumElement()}
       <div className={CardType === `FAVORITE` ? `favorites__image-wrapper place-card__image-wrapper` : `cities__image-wrapper place-card__image-wrapper`}>
         <Link to={roomLink}>
