@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid';
 import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, getUniqueArray} from '../utils';
-import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes} from './data';
+import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes, offerLocations} from './data';
 
 const generateImages = () => {
   const images = [];
@@ -15,6 +15,7 @@ const generateImages = () => {
 const imagesArray = generateImages();
 
 export const generateOffer = (index) => {
+  const location = getElementFromArray(offerLocations);
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
   const name = getElementFromArray(cityNames);
@@ -38,7 +39,11 @@ export const generateOffer = (index) => {
   const offer = {
     bedrooms,
     city: {
-      name,
+      location: {
+        latitude: location[0],
+        longitude: location[1],
+      },
+      name
     },
     description,
     goods,
