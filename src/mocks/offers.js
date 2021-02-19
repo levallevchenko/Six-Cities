@@ -86,7 +86,8 @@ const generateOffers = () => {
 
 const generateNearbyOffers = (offers) => {
   const nearbyOffersArray = [];
-  offers.map((offer) => {
+
+  offers.forEach((offer) => {
     const nearbyOffers = generateRandomArray(offers, minCountData.NEARBY_PLACES_COUNT, maxCountData.NEARBY_PLACES_COUNT);
     const uniqueNearbyOffers = getUniqueArray(nearbyOffers);
 
