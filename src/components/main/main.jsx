@@ -2,9 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {offerPropTypes} from '../../prop-types/offer';
 import OfferList from '../offer-list/offer-list';
+import Map from '../map/map';
 
 const Main = (props) => {
   const {placesCount, offers, CardType} = props;
+
+  const points = [];
+  offers.map((offer) => {
+    points.push(offer.point);
+  });
+
+  const city = offers[0].city;
 
   return (
     <div className="page page--gray page--main">
@@ -85,7 +93,7 @@ const Main = (props) => {
               <OfferList offers={offers} CardType = {CardType} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <Map city={city} points={points} />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-export const OFFER_COUNT = 8;
+export const OFFER_COUNT = 4;
 
 export const minCountData = {
   IMAGE_ID: 1,
@@ -85,3 +85,14 @@ export const offerTypes = [
   `house`,
   `apartment`
 ];
+
+export const offerLocations = [
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198]
+];
+
+export const cityLocations = {
+  amsterdam: [52.38333, 4.9],
+};

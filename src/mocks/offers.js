@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid';
 import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, getUniqueArray} from '../utils';
-import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes} from './data';
+import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes, offerLocations, cityLocations} from './data';
 
 const generateImages = () => {
   const images = [];
@@ -15,6 +15,7 @@ const generateImages = () => {
 const imagesArray = generateImages();
 
 export const generateOffer = (index) => {
+  const location = offerLocations[index];
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
   const name = getElementFromArray(cityNames);
@@ -38,7 +39,12 @@ export const generateOffer = (index) => {
   const offer = {
     bedrooms,
     city: {
-      name,
+      location: {
+        latitude: cityLocations.amsterdam[0],
+        longitude: cityLocations.amsterdam[1],
+        zoom: 12
+      },
+      name
     },
     description,
     goods,
@@ -52,6 +58,11 @@ export const generateOffer = (index) => {
     previewSrc,
     isFavorite,
     isPremium,
+    point: {
+      latitude: location[0],
+      longitude: location[1],
+      zoom: 8
+    },
     hotelImages,
     price,
     maxAdults,
@@ -75,7 +86,8 @@ const generateOffers = () => {
 
 const generateNearbyOffers = (offers) => {
   const nearbyOffersArray = [];
-  offers.map((offer) => {
+
+  offers.forEach((offer) => {
     const nearbyOffers = generateRandomArray(offers, minCountData.NEARBY_PLACES_COUNT, maxCountData.NEARBY_PLACES_COUNT);
     const uniqueNearbyOffers = getUniqueArray(nearbyOffers);
 

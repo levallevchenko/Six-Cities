@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 
 export const reviewPropTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.number.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    comment: PropTypes.array.isRequired,
+    date: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    user: PropTypes.objectOf(PropTypes.shape({
+    rating: PropTypes.string.isRequired,
+    user: PropTypes.shape({
       avatarUrl: PropTypes.string.isRequired,
       userId: PropTypes.number.isRequired,
       isPro: PropTypes.bool.isRequired,
       name: PropTypes.string.isRequired
-    }))
-  })))
+    })
+  }))
 };
 
 export const reviewStarPropTypes = {

@@ -151,6 +151,6 @@ const Room = (props) => {
   );
 };
 
-Room.propTypes = offerPropTypes;
+Room.propTypes = offerPropTypes.offer;
 
 export default Room;
