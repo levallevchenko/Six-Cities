@@ -93,7 +93,7 @@ const Main = (props) => {
               <OfferList offers={offers} CardType = {CardType} />
             </section>
             <div className="cities__right-section">
-              <Map city={city} points={points} />
+              <Map city={city} points={points} isMainMap={true} />
             </div>
           </div>
         </div>
