@@ -5,6 +5,11 @@ export const offerPropTypes = {
     offer: PropTypes.shape({
       bedrooms: PropTypes.number.isRequired,
       city: PropTypes.shape({
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        }),
         name: PropTypes.string.isRequired,
       }),
       description: PropTypes.array.isRequired,
@@ -19,6 +24,11 @@ export const offerPropTypes = {
       previewSrc: PropTypes.string.isRequired,
       isFavorite: PropTypes.bool.isRequired,
       isPremium: PropTypes.bool.isRequired,
+      point: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired
+      }),
       hotelImages: PropTypes.arrayOf(PropTypes.string.isRequired),
       price: PropTypes.number.isRequired,
       maxAdults: PropTypes.number.isRequired,
