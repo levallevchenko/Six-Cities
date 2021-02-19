@@ -5,10 +5,11 @@ import {offerPropTypes} from '../../prop-types/offer';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 import Offer from '../offer/offer';
+import Map from '../map/map';
 
 const Room = (props) => {
   const {offer, reviews, nearbyOffers, CardType} = props;
-  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages} = offer;
+  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
 
   // const Good = (props) => {
@@ -19,6 +20,12 @@ const Room = (props) => {
   //     </li>
   //   );
   // }
+
+  const points = [];
+  nearbyOffers.map((nearbyOffer) => {
+    points.push(nearbyOffer.point);
+  });
+
   const [currentOfferId, setCurrentOfferId] = useState(``);
 
   const handleOfferFocus = (offerId) => {
@@ -135,7 +142,7 @@ const Room = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map" />
+          <Map city={city} points={points} />
         </section>
         <div className="container">
           <section className="near-places places">

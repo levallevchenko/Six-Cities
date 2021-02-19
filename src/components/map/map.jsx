@@ -4,7 +4,7 @@ import {offerPropTypes} from '../../prop-types/offer';
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({city, points}) => {
+const Map = ({city, points, isMainMap}) => {
   const mapRef = useRef();
   const icon = leaflet.icon({
     iconUrl: `/img/pin.svg`,
@@ -44,10 +44,10 @@ const Map = ({city, points}) => {
         mapRef.current.remove();
       };
     });
-  }, [city, points]);
+  }, [city]);
 
   return (
-    <section className="cities__map map" id="map" style={{height: `auto`, width: `512px`}} ref={mapRef} />
+    <section className="cities__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} ref={mapRef} />
   );
 };
 
