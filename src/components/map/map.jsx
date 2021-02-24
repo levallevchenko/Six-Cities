@@ -36,12 +36,13 @@ const Map = ({location, points, isMainMap}) => {
         icon,
       })
       .addTo(map);
-
-      return () => {
-        map.remove();
-      };
     });
-  }, []);
+
+    return () => {
+      map.remove();
+    };
+
+  }, [location]);
 
   return (
     <section className="cities__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} />
