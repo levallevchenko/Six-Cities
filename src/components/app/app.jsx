@@ -9,22 +9,22 @@ import NotFound from '../not-found/not-found';
 
 
 const App = (props) => {
-  const {placesCount, offers, reviews, nearbyOffersArray, CardType} = props;
+  const {offers, reviews, nearbyOffersArray} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main placesCount={placesCount} offers = {offers} CardType = {CardType.MAIN} />
+          <Main />
         </Route>
         <Route exact path="/offer/:id">
-          <Room offer = {offers[0]} reviews = {reviews[0]} nearbyOffers = {nearbyOffersArray[0]} CardType = {CardType.MAIN} />
+          <Room offer = {offers[0]} reviews = {reviews[0]} nearbyOffers = {nearbyOffersArray[0]} />
         </Route>
         <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/favorites">
-          <Favorites offers = {offers} CardType = {CardType.FAVORITE} />
+          <Favorites offers = {offers} />
         </Route>
         <Route>
           <NotFound />

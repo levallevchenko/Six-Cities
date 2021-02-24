@@ -1,12 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {CardTypes} from '../../const';
 import {offerPropTypes} from '../../prop-types/offer';
 import CityFavorites from '../city-favorites/city-favorites';
 import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
 
-const Favorites = (props) => {
-  const {CardType} = props;
-
+const Favorites = () => {
   return (
     <div className="page">
       <header className="header">
@@ -36,7 +35,7 @@ const Favorites = (props) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType} city={city} />)}
+              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardTypes.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
