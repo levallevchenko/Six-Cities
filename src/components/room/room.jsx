@@ -23,11 +23,7 @@ const Room = (props) => {
   // }
 
   const location = city.location;
-
-  const points = [];
-  nearbyOffers.map((nearbyOffer) => {
-    points.push(nearbyOffer.point);
-  });
+  const points = nearbyOffers.map((nearbyOffer) => nearbyOffer.point);
 
   const [currentOfferId, setCurrentOfferId] = useState(``);
 

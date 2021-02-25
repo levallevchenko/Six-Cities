@@ -13,15 +13,10 @@ import MainEmpty from '../main-empty/main-empty';
 const Main = (props) => {
   const {activeCity, cityOffers} = props;
 
-  const cityOffersArray = Array.from(cityOffers);
-  const placesCount = cityOffersArray.length;
+  const placesCount = cityOffers.length;
+  const points = cityOffers.map((offer) => offer.point);
 
-  const points = [];
-  cityOffers.map((offer) => {
-    points.push(offer.point);
-  });
-
-  const location = placesCount ? cityOffersArray[0].city.location : {};
+  const location = placesCount ? cityOffers[0].city.location : {};
 
   return (
     <div className="page page--gray page--main">
