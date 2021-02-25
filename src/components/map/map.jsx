@@ -1,17 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import {offerPropTypes} from '../../prop-types/offer';
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({location, points, isMainMap}) => {
-  const icon = leaflet.icon({
+const Map = ({location, points, isMainMap, currentOffer}) => {
+  const mapRef = useRef();
+
+  const basicIcon = leaflet.icon({
     iconUrl: `/img/pin.svg`,
     iconSize: [27, 39]
   });
 
+  const activeIcon = leaflet.icon({
+    iconUrl: `/img/pin-active.svg`,
+    iconSize: [27, 39]
+  });
+
   useEffect(() => {
-    const map = leaflet.map(`map`, {
+    mapRef.current = leaflet.map(`map`, {
       center: {
         lat: location.latitude,
         lng: location.longitude
@@ -25,24 +32,31 @@ const Map = ({location, points, isMainMap}) => {
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(map);
-
-    points.forEach((point) => {
-      leaflet.marker({
-        lat: point.latitude,
-        lng: point.longitude
-      },
-      {
-        icon,
-      })
-      .addTo(map);
-    });
+      .addTo(mapRef.current);
 
     return () => {
-      map.remove();
+      mapRef.current.remove();
     };
 
   }, [location]);
+
+  useEffect(() => {
+    const markers = [];
+    points.forEach((point) => {
+      const icon = (currentOffer && (point.hotelId === currentOffer.hotelId)) ? activeIcon : basicIcon;
+      markers.push(
+          leaflet
+            .marker({
+              lat: point.location.latitude,
+              lng: point.location.longitude
+            }, {icon})
+            .addTo(mapRef.current));
+    });
+
+    return () => {
+      markers.forEach((marker) => mapRef.current.removeLayer(marker));
+    };
+  }, [points, currentOffer]);
 
   return (
     <section className="cities__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} />

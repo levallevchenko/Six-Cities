@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useState} from 'react';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardTypes} from '../../const';
 import ReviewList from '../review-list/review-list';
@@ -23,13 +22,6 @@ const Room = (props) => {
   // }
 
   const location = city.location;
-  const points = nearbyOffers.map((nearbyOffer) => nearbyOffer.point);
-
-  const [currentOfferId, setCurrentOfferId] = useState(``);
-
-  const handleOfferFocus = (offerId) => {
-    setCurrentOfferId(offerId);
-  };
 
   return (
     <div className="page">
@@ -141,14 +133,13 @@ const Room = (props) => {
               </section>
             </div>
           </div>
-          <Map location={location} points={points} />
+          <Map location={location} points={nearbyOffers} />
         </section>
         <div className="container">
           <section className="near-places places">
-            <h3>CurrentOffer: {currentOfferId} </h3>
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardTypes.MAIN} onOfferFocus = {handleOfferFocus} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardTypes.MAIN} />)}
             </div>
           </section>
         </div>

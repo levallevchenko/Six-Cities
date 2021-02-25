@@ -13,10 +13,9 @@ import MainEmpty from '../main-empty/main-empty';
 
 const Main = (props) => {
   const {activeCity, cityOffers} = props;
-  const [currentOffer, setCurrentOffer] = useState(``);
-
-  const handleOfferFocus = (offerId) => {
-    setCurrentOffer(offerId);
+  const [currentOffer, setCurrentOffer] = useState(null);
+  const handleOfferFocus = (offer) => {
+    setCurrentOffer(offer);
   };
 
   const handleOfferBlur = () => {
@@ -24,7 +23,6 @@ const Main = (props) => {
   };
 
   const placesCount = cityOffers.length;
-  const points = cityOffers.map((offer) => offer.point);
 
   const location = placesCount ? cityOffers[0].city.location : {};
 
@@ -64,7 +62,6 @@ const Main = (props) => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <h3>CurrentOffer: {currentOffer}</h3>
                 <b className="places__found">{placesCount} places to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by </span>
@@ -82,7 +79,7 @@ const Main = (props) => {
                   onOfferBlur={handleOfferBlur} />
               </section>
               <div className="cities__right-section">
-                <Map location={location} points={points} isMainMap={true} activeCity={activeCity} />
+                <Map location={location} points={cityOffers} isMainMap={true} currentOffer={currentOffer} />
               </div>
             </div>}
         </div>

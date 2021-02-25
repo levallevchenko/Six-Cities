@@ -58,7 +58,7 @@ export const generateOffer = (index) => {
     previewSrc,
     isFavorite,
     isPremium,
-    point: {
+    location: {
       latitude: location[0],
       longitude: location[1],
       zoom: 8

@@ -23,14 +23,16 @@ const Offer = (props) => {
   //   }
   // };
 
+  const handleOfferFocus = () => onOfferFocus(offer);
+
   const getPremiumElement = () => <div className="place-card__mark"><span>Premium</span></div>;
 
   return (
     <article
-      onFocus={() => onOfferFocus(hotelId)}
-      onMouseEnter = {() => onOfferFocus(hotelId)}
-      onBlur={() => onOfferBlur()}
-      onMouseLeave={() => onOfferBlur()}
+      onFocus={handleOfferFocus}
+      onMouseEnter = {handleOfferFocus}
+      onBlur={onOfferBlur}
+      onMouseLeave={onOfferBlur}
       className={CardType === `FAVORITE` ? `favorites__card place-card` : `cities__place-card place-card`}>
       {isPremium && getPremiumElement()}
       <div className={CardType === `FAVORITE` ? `favorites__image-wrapper place-card__image-wrapper` : `cities__image-wrapper place-card__image-wrapper`}>
