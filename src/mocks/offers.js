@@ -15,10 +15,10 @@ const generateImages = () => {
 const imagesArray = generateImages();
 
 export const generateOffer = (index) => {
-  const location = offerLocations[index];
   const previewId = getRandomInteger(minCountData.IMAGE_ID, maxCountData.IMAGE_ID);
   const bedrooms = getRandomInteger(minCountData.BEDROOMS_COUNT, maxCountData.BEDROOMS_COUNT);
   const name = getElementFromArray(cityNames);
+  const location = getElementFromArray(offerLocations[name]);
   const description = generateRandomArray(descriptionArray, minCountData.DESCRIPTION_COUNT, maxCountData.DESCRIPTION_COUNT);
   const goods = generateRandomArray(goodsArray, minCountData.GOODS_COUNT, maxCountData.GOODS_COUNT);
   const avatarUrl = `img/avatar-${getElementFromArray(avatarNames).toLowerCase()}.jpg`;
@@ -40,8 +40,8 @@ export const generateOffer = (index) => {
     bedrooms,
     city: {
       location: {
-        latitude: cityLocations.amsterdam[0],
-        longitude: cityLocations.amsterdam[1],
+        latitude: cityLocations[name][0],
+        longitude: cityLocations[name][1],
         zoom: 12
       },
       name
@@ -90,7 +90,6 @@ const generateNearbyOffers = (offers) => {
   offers.forEach((offer) => {
     const nearbyOffers = generateRandomArray(offers, minCountData.NEARBY_PLACES_COUNT, maxCountData.NEARBY_PLACES_COUNT);
     const uniqueNearbyOffers = getUniqueArray(nearbyOffers);
-
     nearbyOffersArray.push(uniqueNearbyOffers);
     offer.uniqueNearbyOffers = uniqueNearbyOffers;
   });
