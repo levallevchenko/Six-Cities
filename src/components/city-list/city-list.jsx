@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {ActionCreator} from '../../store/action';
 import {CityNames} from '../../const';
+import {ActionCreator} from '../../store/action';
 
 const CityList = (props) => {
   const {activeCity, onChangeCity} = props;

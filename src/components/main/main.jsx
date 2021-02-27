@@ -1,11 +1,11 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardTypes} from '../../const';
-import {getCityOffers} from '../../utils';
+import {getCityOffers, sortOffers} from '../../utils/project';
+import OfferSorting from '../offer-sorting/offer-sorting';
 import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
@@ -14,6 +14,7 @@ import MainEmpty from '../main-empty/main-empty';
 const Main = (props) => {
   const {activeCity, cityOffers} = props;
   const [currentOffer, setCurrentOffer] = useState(null);
+
   const handleOfferFocus = (offer) => {
     setCurrentOffer(offer);
   };
@@ -63,15 +64,7 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{placesCount} places to stay in {activeCity}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by </span>
-                  <span className="places__sorting-type" tabIndex={0}>
-                    Popular
-                    <svg className="places__sorting-arrow" width={7} height={4}>
-                      <use xlinkHref="#icon-arrow-select" />
-                    </svg>
-                  </span>
-                </form>
+                <OfferSorting />
                 <OfferList
                   cityOffers={cityOffers}
                   CardType = {CardTypes.MAIN}
@@ -92,7 +85,7 @@ Main.propTypes = offerPropTypes.offer;
 
 const mapStateToProps = (state) => ({
   activeCity: state.activeCity,
-  cityOffers: getCityOffers(state.offers, state.activeCity)
+  cityOffers: sortOffers(getCityOffers(state.offers, state.activeCity), state.activeSorting)
 });
 
 

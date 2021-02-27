@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, generateRandomDate} from '../utils';
+import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, generateRandomDate} from '../utils/common';
 import {minCountData, maxCountData, descriptionArray, userNames, avatarNames} from './data';
 import {offers} from './offers';
 
