@@ -40,21 +40,26 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
 
   }, [location]);
 
-  useEffect(() => {
-    const markers = [];
-    points.forEach((point) => {
-      const icon = (currentOffer && (point.hotelId === currentOffer.hotelId)) ? activeIcon : basicIcon;
-      markers.push(
-          leaflet
-            .marker({
-              lat: point.location.latitude,
-              lng: point.location.longitude
-            }, {icon})
-            .addTo(mapRef.current));
+  const markers = [];
+  const pushMarkers = (icon, offer) => {
+    markers.push(
+        leaflet
+          .marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude
+          }, {icon})
+          .addTo(mapRef.current));
+  };
 
-      const activeIconElement = document.querySelector(`img[src="/img/pin-active.svg"]`);
-      if (activeIconElement !== null) {
-        activeIconElement.style.zIndex = 1000;
+  useEffect(() => {
+    points.forEach((point) => {
+      pushMarkers(basicIcon, point);
+    });
+
+    // Separate push helps to render different markers with the same addresses in active state
+    points.forEach((point) => {
+      if (currentOffer && (point.hotelId === currentOffer.hotelId)) {
+        pushMarkers(activeIcon, currentOffer);
       }
     });
 
