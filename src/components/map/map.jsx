@@ -9,12 +9,12 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
 
   const basicIcon = leaflet.icon({
     iconUrl: `/img/pin.svg`,
-    iconSize: [27, 39]
+    iconSize: [27, 39],
   });
 
   const activeIcon = leaflet.icon({
     iconUrl: `/img/pin-active.svg`,
-    iconSize: [27, 39]
+    iconSize: [27, 39],
   });
 
   useEffect(() => {
@@ -51,6 +51,11 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
               lng: point.location.longitude
             }, {icon})
             .addTo(mapRef.current));
+
+      const activeIconElement = document.querySelector(`img[src="/img/pin-active.svg"]`);
+      if (activeIconElement !== null) {
+        activeIconElement.style.zIndex = 1000;
+      }
     });
 
     return () => {
