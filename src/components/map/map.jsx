@@ -57,11 +57,9 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
     });
 
     // Separate push helps to render different markers with the same addresses in active state
-    points.forEach((point) => {
-      if (currentOffer && (point.hotelId === currentOffer.hotelId)) {
-        pushMarkers(activeIcon, currentOffer);
-      }
-    });
+    if (currentOffer) {
+      pushMarkers(activeIcon, currentOffer);
+    }
 
     return () => {
       markers.forEach((marker) => mapRef.current.removeLayer(marker));
