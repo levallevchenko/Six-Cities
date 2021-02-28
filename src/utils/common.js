@@ -36,7 +36,3 @@ export const getUniqueArray = (array) => {
   const uniqueArray = Array.from(arraySet);
   return uniqueArray;
 };
-
-export const getCityOffers = (offers, city) => {
-  return offers.filter((offer) => offer.city.name === city);
-};

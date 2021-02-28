@@ -23,7 +23,7 @@ export const maxCountData = {
   RATING_VALUE: 5,
   PRICE_VALUE: 1000,
   REVIEW_COUNT: 6,
-  NEARBY_PLACES_COUNT: 10
+  NEARBY_PLACES_COUNT: 6
 };
 
 export const hotelNames = [
@@ -129,7 +129,7 @@ export const offerLocations = {
     [53.529341, 10.05654],
   ],
   Dusseldorf: [
-    [51.225402, 6.776314],
+    [51.225402, 6.816314],
     [51.2334402, 6.7963134],
     [51.235402, 6.800314],
     [51.236402000000005, 6.784314],

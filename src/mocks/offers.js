@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, getUniqueArray} from '../utils';
+import {getRandomInteger, getRandomBoolean, generateRandomArray, getRandomNumber, getElementFromArray, getUniqueArray} from '../utils/common';
 import {OFFER_COUNT, minCountData, maxCountData, hotelNames, cityNames, descriptionArray, avatarNames, goodsArray, userNames, offerTypes, offerLocations, cityLocations} from './data';
 
 const generateImages = () => {
@@ -58,7 +58,7 @@ export const generateOffer = (index) => {
     previewSrc,
     isFavorite,
     isPremium,
-    point: {
+    location: {
       latitude: location[0],
       longitude: location[1],
       zoom: 8

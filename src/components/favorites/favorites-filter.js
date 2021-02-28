@@ -1,4 +1,4 @@
-import {getUniqueArray} from '../../utils';
+import {getUniqueArray} from '../../utils/common';
 import {offers} from '../../mocks/offers';
 
 const favoriteOffers = offers.filter((offer) => offer.isFavorite);
