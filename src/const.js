@@ -51,3 +51,8 @@ export const CardTypes = {
   MAIN: `MAIN`,
   FAVORITE: `FAVORITE`
 };
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};

@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardTypes} from '../../const';
 import {getCityOffers, sortOffers} from '../../utils/project';
+import {fetchOffersList} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 import OfferSorting from '../offer-sorting/offer-sorting';
 import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
@@ -12,8 +14,20 @@ import CityList from '../city-list/city-list';
 import MainEmpty from '../main-empty/main-empty';
 
 const Main = (props) => {
-  const {activeCity, cityOffers} = props;
+  const {activeCity, cityOffers, isOffersLoaded, onLoadOffers} = props;
   const [currentOffer, setCurrentOffer] = useState(null);
+
+  useEffect(() => {
+    if (!isOffersLoaded) {
+      onLoadOffers();
+    }
+  }, [isOffersLoaded]);
+
+  if (!isOffersLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const handleOfferFocus = (offer) => {
     setCurrentOffer(offer);
@@ -85,9 +99,16 @@ Main.propTypes = offerPropTypes.offer;
 
 const mapStateToProps = (state) => ({
   activeCity: state.activeCity,
-  cityOffers: sortOffers(getCityOffers(state.offers, state.activeCity), state.activeSorting)
+  cityOffers: sortOffers(getCityOffers(state.offers, state.activeCity), state.activeSorting),
+  isOffersLoaded: state.isOffersLoaded
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadOffers() {
+    dispatch(fetchOffersList());
+  }
 });
 
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
