@@ -1,11 +1,14 @@
-import {CityNames, SortingTypes} from '../const';
+import {CityNames, SortingTypes, AuthorizationStatus} from '../const';
 import {ActionType} from './action';
-import {offers} from '../mocks/offers';
+import {adaptOffersData} from '../services/adapter';
+// import {offers} from '../mocks/offers';
 
 const initialState = {
   activeSorting: SortingTypes.POPULAR,
   activeCity: CityNames.PARIS,
-  offers,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isOffersLoaded: false,
+  offers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +22,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeSorting: action.payload
+      };
+    case ActionType.LOAD_OFFERS:
+      return {
+        ...state,
+        offers: adaptOffersData(action.payload),
+        isOffersLoaded: true
+      };
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload
       };
     default:
       return state;
