@@ -6,7 +6,7 @@ import Room from '../room/room';
 import Login from '../login/login';
 import Favorites from '../favorites/favorites';
 import NotFound from '../not-found/not-found';
-
+import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
   const {offers, reviews, nearbyOffersArray} = props;
@@ -23,9 +23,11 @@ const App = (props) => {
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route exact path="/favorites">
-          <Favorites offers = {offers} />
-        </Route>
+        <PrivateRoute exact
+          path="/favorites"
+          render={() => <Favorites offers = {offers} />}
+        >
+        </PrivateRoute>
         <Route>
           <NotFound />
         </Route>
