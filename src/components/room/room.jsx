@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
+import {reviewPropTypes} from '../../prop-types/review';
 import {CardTypes} from '../../const';
 import Header from '../header/header';
 import ReviewList from '../review-list/review-list';
@@ -127,6 +129,10 @@ const Room = (props) => {
   );
 };
 
-Room.propTypes = offerPropTypes.offer;
+Room.propTypes = {
+  offer: offerPropTypes,
+  reviews: PropTypes.arrayOf(reviewPropTypes),
+  nearbyOffers: PropTypes.arrayOf(offerPropTypes),
+};
 
 export default Room;

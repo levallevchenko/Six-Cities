@@ -1,6 +1,8 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
+import {reviewPropTypes} from '../../prop-types/review';
 import Main from '../main/main';
 import Room from '../room/room';
 import Login from '../login/login';
@@ -36,6 +38,10 @@ const App = (props) => {
   );
 };
 
-App.propTypes = offerPropTypes;
+App.propTypes = {
+  offers: PropTypes.arrayOf(offerPropTypes),
+  reviews: PropTypes.arrayOf(reviewPropTypes),
+  nearbyOffersArray: PropTypes.arrayOf(offerPropTypes),
+};
 
 export default App;

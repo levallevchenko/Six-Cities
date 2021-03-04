@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardTypes} from '../../const';
 import {getCityOffers, sortOffers} from '../../utils/project';
@@ -74,7 +75,12 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = offerPropTypes.offer;
+Main.propTypes = {
+  cityOffers: PropTypes.arrayOf(offerPropTypes),
+  activeCity: PropTypes.string,
+  isOffersLoaded: PropTypes.bool,
+  onLoadOffers: PropTypes.func,
+};
 
 const mapStateToProps = (state) => ({
   activeCity: state.activeCity,
@@ -87,7 +93,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchOffersList());
   }
 });
-
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

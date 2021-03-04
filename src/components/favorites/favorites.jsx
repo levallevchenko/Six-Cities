@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {CardTypes} from '../../const';
-import {offerPropTypes} from '../../prop-types/offer';
 import CityFavorites from '../city-favorites/city-favorites';
 import {Header} from '../header/header';
 import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
@@ -28,8 +27,5 @@ const Favorites = () => {
     </div>
   );
 };
-
-
-Favorites.propTypes = offerPropTypes;
 
 export default Favorites;

@@ -37,6 +37,6 @@ const Review = (props) => {
   );
 };
 
-Review.propTypes = reviewPropTypes;
+Review.propTypes = reviewPropTypes.review;
 
 export default Review;
