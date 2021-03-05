@@ -23,6 +23,7 @@ const Header = ({authorizationStatus}) => {
                 <Link className="header__nav-link header__nav-link--profile" to="/favorites">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
+                  {/* Добавлю позже введённый имейл */}
                   <span className="header__user-name user__name">{isAuthorized ? `Oliver.conner@gmail.com` : `Sign in`}</span>
                 </Link>
               </li>

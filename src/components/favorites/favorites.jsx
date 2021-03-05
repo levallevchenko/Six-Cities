@@ -1,28 +1,13 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardTypes} from '../../const';
 import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
-import {fetchOffersList} from '../../store/api-actions';
-import LoadingScreen from '../loading-screen/loading-screen';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
 
-const Favorites = ({isOffersLoaded, onLoadOffers}) => {
-  useEffect(() => {
-    if (!isOffersLoaded) {
-      onLoadOffers();
-    }
-  }, [isOffersLoaded]);
-
-  if (!isOffersLoaded) {
-    return (
-      <LoadingScreen />
-    );
-  }
-
+const Favorites = () => {
   return (
     <div className="page">
       <Header />
@@ -52,15 +37,4 @@ Favorites.propTypes = {
   onLoadOffers: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  isOffersLoaded: state.isOffersLoaded
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadOffers() {
-    dispatch(fetchOffersList());
-  }
-});
-
-export {Favorites};
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default Favorites;
