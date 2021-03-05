@@ -24,7 +24,7 @@ const CityFavorites = (props) => {
 };
 
 CityFavorites.propTypes = {
-  offers: offerPropTypes,
+  offers: PropTypes.arrayOf(offerPropTypes),
   CardType: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
 };

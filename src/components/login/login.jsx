@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Header} from '../header/header';
+import Header from '../header/header';
 import {login} from "../../store/api-actions";
 
 

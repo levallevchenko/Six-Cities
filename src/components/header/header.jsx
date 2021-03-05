@@ -6,7 +6,7 @@ import {AuthorizationStatus} from '../../const';
 
 const Header = ({authorizationStatus}) => {
 
-  const authorized = authorizationStatus === AuthorizationStatus.AUTH;
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <header className="header">
@@ -23,7 +23,7 @@ const Header = ({authorizationStatus}) => {
                 <Link className="header__nav-link header__nav-link--profile" to="/favorites">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">{authorized ? `Oliver.conner@gmail.com` : `Sign in`}</span>
+                  <span className="header__user-name user__name">{isAuthorized ? `Oliver.conner@gmail.com` : `Sign in`}</span>
                 </Link>
               </li>
             </ul>
