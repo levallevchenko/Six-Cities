@@ -1,8 +1,9 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {reviewPropTypes} from '../../prop-types/review';
+import browserHistory from '../../browser-history';
 import Main from '../main/main';
 import Room from '../room/room';
 import Login from '../login/login';
@@ -14,7 +15,7 @@ const App = (props) => {
   const {offers, reviews, nearbyOffersArray} = props;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <Main />

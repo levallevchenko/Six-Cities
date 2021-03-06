@@ -3,6 +3,8 @@ export const ActionType = {
   CHANGE_SORTING: `sorting/changeSorting`,
   LOAD_OFFERS: `offers/loadOffers`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  SET_AUTH_INFO: `user/login`,
+  REDIRECT_TO_ROUTE: `site/redirectToRoute`,
 };
 
 export const ActionCreator = {
@@ -21,5 +23,13 @@ export const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
-  })
+  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url
+  }),
+  setAuthInfo: (info) => ({
+    type: ActionType.SET_AUTH_INFO,
+    payload: info
+  }),
 };
