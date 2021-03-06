@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
-import {CardTypes} from '../../const';
+import {CardType} from '../../const';
 import {getCityOffers, sortOffers} from '../../utils/project';
 import {fetchOffersList} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
@@ -61,7 +61,7 @@ const Main = (props) => {
                 <OfferSorting />
                 <OfferList
                   cityOffers={cityOffers}
-                  CardType = {CardTypes.MAIN}
+                  CardType = {CardType.MAIN}
                   onOfferFocus ={handleOfferFocus}
                   onOfferBlur={handleOfferBlur} />
               </section>

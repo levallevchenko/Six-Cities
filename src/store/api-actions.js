@@ -1,20 +1,20 @@
 import {ActionCreator} from "./action";
-import {AuthorizationStatus} from "../const";
+import {AuthorizationStatus, APIRoute} from "../const";
 
 export const fetchOffersList = () => (dispatch, _getState, api) => (
-  api.get(`/hotels`)
+  api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(`/login`)
+  api.get(APIRoute.LOGIN)
     .then(({data}) => dispatch(ActionCreator.setAuthInfo(data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
+  api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => dispatch(ActionCreator.setAuthInfo(data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))

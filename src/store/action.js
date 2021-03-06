@@ -4,7 +4,7 @@ export const ActionType = {
   LOAD_OFFERS: `offers/loadOffers`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_AUTH_INFO: `user/login`,
-  REDIRECT_TO_ROUTE: `site/redirectToRoute`,
+  REDIRECT_TO_ROUTE: `app/redirectToRoute`,
 };
 
 export const ActionCreator = {

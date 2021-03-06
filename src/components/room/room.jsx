@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {reviewPropTypes} from '../../prop-types/review';
-import {CardTypes} from '../../const';
+import {CardType} from '../../const';
 import Header from '../header/header';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
@@ -120,7 +120,7 @@ const Room = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardTypes.MAIN} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
             </div>
           </section>
         </div>

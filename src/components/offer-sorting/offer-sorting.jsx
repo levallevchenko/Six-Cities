@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {SortingTypes} from '../../const';
+import {SortingType} from '../../const';
 import {ActionCreator} from '../../store/action';
 
 const OfferSorting = (props) => {
@@ -29,7 +29,7 @@ const OfferSorting = (props) => {
       </span>
       {openedSorting &&
       <ul className="places__options places__options--custom places__options--opened">
-        {Object.values(SortingTypes).map((sortingType, id) => (
+        {Object.values(SortingType).map((sortingType, id) => (
           <li className={classNames(`places__option`, {'places__option--active': sortingType === activeSorting})}
             key={sortingType + id}
             tabIndex={0}

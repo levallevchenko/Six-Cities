@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
-import {CardTypes} from '../../const';
+import {CardType} from '../../const';
 import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
@@ -16,7 +16,7 @@ const Favorites = () => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardTypes.FAVORITE} city={city} />)}
+              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
