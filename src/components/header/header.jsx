@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from '../../const';
+import {authInfoPropTypes} from '../../prop-types/auth-info';
 
-const Header = ({authorizationStatus}) => {
-
+const Header = ({authorizationStatus, authInfo}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
@@ -23,8 +23,7 @@ const Header = ({authorizationStatus}) => {
                 <Link className="header__nav-link header__nav-link--profile" to="/favorites">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  {/* Добавлю позже введённый имейл */}
-                  <span className="header__user-name user__name">{isAuthorized ? `Oliver.conner@gmail.com` : `Sign in`}</span>
+                  <span className="header__user-name user__name">{isAuthorized ? authInfo.email : `Sign in`}</span>
                 </Link>
               </li>
             </ul>
@@ -35,13 +34,15 @@ const Header = ({authorizationStatus}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-});
-
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  authInfo: authInfoPropTypes
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  authInfo: state.authInfo
+});
 
 export {Header};
 export default connect(mapStateToProps)(Header);
