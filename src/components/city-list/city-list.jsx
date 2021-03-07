@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {CityName} from '../../const';
 import {ActionCreator} from '../../store/action';
+import {getActiveCity} from '../../store/offers/selectors';
 
 const CityList = (props) => {
   const {activeCity, onChangeCity} = props;
@@ -24,8 +25,8 @@ const CityList = (props) => {
   );
 };
 
-const mapStateToProps = ({OFFERS}) => ({
-  activeCity: OFFERS.activeCity
+const mapStateToProps = (state) => ({
+  activeCity: getActiveCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

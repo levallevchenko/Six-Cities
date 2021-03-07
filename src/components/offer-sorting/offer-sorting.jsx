@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {SortingType} from '../../const';
 import {ActionCreator} from '../../store/action';
+import {getActiveSorting} from '../../store/offers/selectors';
 
 const OfferSorting = (props) => {
   const {activeSorting, onChangeSorting} = props;
@@ -41,8 +42,8 @@ const OfferSorting = (props) => {
   );
 };
 
-const mapStateToProps = ({OFFERS}) => ({
-  activeSorting: OFFERS.activeSorting
+const mapStateToProps = (state) => ({
+  activeSorting: getActiveSorting(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

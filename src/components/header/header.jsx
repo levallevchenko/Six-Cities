@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {AuthorizationStatus} from '../../const';
 import {authInfoPropTypes} from '../../prop-types/auth-info';
+import {getAuthStatus, getAuthInfo} from '../../store/user/selectors';
 
 const Header = ({authorizationStatus, authInfo}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
@@ -39,9 +40,9 @@ Header.propTypes = {
   authInfo: authInfoPropTypes
 };
 
-const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
-  authInfo: USER.authInfo
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthStatus(state),
+  authInfo: getAuthInfo(state)
 });
 
 export {Header};
