@@ -1,6 +1,6 @@
 export const ActionType = {
   CHANGE_CITY: `offers/changeCity`,
-  CHANGE_SORTING: `sorting/changeSorting`,
+  CHANGE_SORTING: `offers/changeSorting`,
   LOAD_OFFERS: `offers/loadOffers`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_AUTH_INFO: `user/login`,

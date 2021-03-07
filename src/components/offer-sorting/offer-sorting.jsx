@@ -41,8 +41,8 @@ const OfferSorting = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  activeSorting: state.activeSorting
+const mapStateToProps = ({OFFERS}) => ({
+  activeSorting: OFFERS.activeSorting
 });
 
 const mapDispatchToProps = (dispatch) => ({

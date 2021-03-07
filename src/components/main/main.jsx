@@ -82,10 +82,10 @@ Main.propTypes = {
   onLoadOffers: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  activeCity: state.activeCity,
-  cityOffers: sortOffers(getCityOffers(state.offers, state.activeCity), state.activeSorting),
-  isOffersLoaded: state.isOffersLoaded
+const mapStateToProps = ({OFFERS}) => ({
+  activeCity: OFFERS.activeCity,
+  cityOffers: sortOffers(getCityOffers(OFFERS.offers, OFFERS.activeCity), OFFERS.activeSorting),
+  isOffersLoaded: OFFERS.isOffersLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({
