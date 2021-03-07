@@ -1,22 +1,23 @@
 import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Header from '../header/header';
 import {login} from "../../store/api-actions";
 
 
-const Login = ({onSubmit}) => {
+const Login = () => {
+  const dispatch = useDispatch();
+
   const loginRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit({
+    dispatch(login({
       login: loginRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
 
   return (
@@ -72,15 +73,4 @@ const Login = ({onSubmit}) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  }
-});
-
-Login.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-
-export {Login};
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

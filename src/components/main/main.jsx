@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import {offerPropTypes} from '../../prop-types/offer';
 import {CardType} from '../../const';
 import {getCityOffers, sortOffers} from '../../utils/project';
 import {fetchOffersList} from '../../store/api-actions';
-import {getOffers, getActiveCity, getActiveSorting, getIsOffersLoaded} from '../../store/offers/selectors';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Header from '../header/header';
 import OfferSorting from '../offer-sorting/offer-sorting';
@@ -15,13 +12,16 @@ import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import MainEmpty from '../main-empty/main-empty';
 
-const Main = (props) => {
-  const {activeCity, cityOffers, isOffersLoaded, onLoadOffers} = props;
+const Main = () => {
+  const {activeCity, offers, isOffersLoaded, activeSorting} = useSelector((state) => state.OFFERS);
+  const dispatch = useDispatch();
+  const cityOffers = sortOffers(getCityOffers(offers, activeCity), activeSorting);
+
   const [currentOffer, setCurrentOffer] = useState(null);
 
   useEffect(() => {
     if (!isOffersLoaded) {
-      onLoadOffers();
+      dispatch(fetchOffersList());
     }
   }, [isOffersLoaded]);
 
@@ -76,24 +76,4 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  cityOffers: PropTypes.arrayOf(offerPropTypes),
-  activeCity: PropTypes.string,
-  isOffersLoaded: PropTypes.bool,
-  onLoadOffers: PropTypes.func,
-};
-
-const mapStateToProps = (state) => ({
-  activeCity: getActiveCity(state),
-  cityOffers: sortOffers(getCityOffers(getOffers(state), getActiveCity(state)), getActiveSorting(state)),
-  isOffersLoaded: getIsOffersLoaded(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadOffers() {
-    dispatch(fetchOffersList());
-  }
-});
-
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
