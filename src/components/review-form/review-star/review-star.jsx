@@ -16,6 +16,6 @@ const ReviewStar = (props) => {
   );
 };
 
-ReviewStar.propTypes = reviewStarPropTypes;
+ReviewStar.propTypes = reviewStarPropTypes.isRequired;
 
 export default ReviewStar;

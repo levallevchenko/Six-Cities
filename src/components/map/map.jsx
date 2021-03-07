@@ -72,11 +72,10 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
   );
 };
 
-Map.propTypes = offerPropTypes.points;
-Map.propTypes = offerPropTypes.location;
-Map.propTypes = offerPropTypes.offer;
-
 Map.propTypes = {
+  location: offerPropTypes.isRequired,
+  points: PropTypes.arrayOf(offerPropTypes),
+  currentOffer: offerPropTypes,
   isMainMap: PropTypes.bool
 };
 
