@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {reviewPropTypes} from '../../prop-types/review';
 import Review from '../review/review';
 
@@ -17,6 +18,8 @@ const ReviewList = (props) => {
   );
 };
 
-ReviewList.propTypes = reviewPropTypes;
+ReviewList.propTypes = {
+  reviews: PropTypes.arrayOf(reviewPropTypes),
+};
 
 export default ReviewList;

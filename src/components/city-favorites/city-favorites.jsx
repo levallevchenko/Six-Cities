@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import Offer from '../offer/offer';
 
@@ -22,6 +23,10 @@ const CityFavorites = (props) => {
   );
 };
 
-CityFavorites.propTypes = offerPropTypes;
+CityFavorites.propTypes = {
+  offers: PropTypes.arrayOf(offerPropTypes),
+  CardType: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+};
 
 export default CityFavorites;

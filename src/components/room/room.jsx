@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
-import {CardTypes} from '../../const';
+import {reviewPropTypes} from '../../prop-types/review';
+import {CardType} from '../../const';
+import Header from '../header/header';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 import Offer from '../offer/offer';
@@ -25,28 +27,7 @@ const Room = (props) => {
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link" to="/">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to="/login">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -139,7 +120,7 @@ const Room = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardTypes.MAIN} />)}
+              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
             </div>
           </section>
         </div>
@@ -148,6 +129,10 @@ const Room = (props) => {
   );
 };
 
-Room.propTypes = offerPropTypes.offer;
+Room.propTypes = {
+  offer: offerPropTypes,
+  reviews: PropTypes.arrayOf(reviewPropTypes),
+  nearbyOffers: PropTypes.arrayOf(offerPropTypes),
+};
 
 export default Room;

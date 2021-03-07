@@ -36,7 +36,7 @@ export const hotelNames = [
   `House in countryside`
 ];
 
-export const cityNames = [
+export const CityName = [
   `Paris`,
   `Cologne`,
   `Brussels`,

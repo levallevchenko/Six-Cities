@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {CityNames} from '../../const';
+import {CityName} from '../../const';
 import {ActionCreator} from '../../store/action';
 
 const CityList = (props) => {
@@ -15,7 +15,7 @@ const CityList = (props) => {
 
   return (
     <ul className="locations__list tabs__list">
-      {Object.values(CityNames).map((city, id) => (<li className="locations__item" key={city + id}>
+      {Object.values(CityName).map((city, id) => (<li className="locations__item" key={city + id}>
         <a className={classNames(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} onClick={handleCityClick} to="/">
           <span>{city}</span>
         </a>

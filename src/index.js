@@ -5,8 +5,9 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {reducer} from './store/reducer';
-import {createAPI} from './services/api';
 import {ActionCreator} from './store/action';
+import {redirect} from "./store/middlewares/redirect";
+import {createAPI} from './services/api';
 import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import App from './components/app/app';
@@ -20,17 +21,18 @@ const api = createAPI(
 const store = createStore(
     reducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
-store.dispatch(checkAuth());
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App
-        offers = {offers} reviews = {reviews} nearbyOffersArray = {nearbyOffersArray}
-      />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+store.dispatch(checkAuth()).then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App
+          offers = {offers} reviews = {reviews} nearbyOffersArray = {nearbyOffersArray}
+        />
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+});

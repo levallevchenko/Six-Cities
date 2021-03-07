@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {offerPropTypes} from '../../prop-types/offer';
 
@@ -71,7 +72,12 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
   );
 };
 
-Map.propTypes = offerPropTypes.city;
+Map.propTypes = offerPropTypes.points;
 Map.propTypes = offerPropTypes.location;
+Map.propTypes = offerPropTypes.offer;
+
+Map.propTypes = {
+  isMainMap: PropTypes.bool
+};
 
 export default Map;

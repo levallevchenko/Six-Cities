@@ -1,41 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {CardTypes} from '../../const';
+import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
-import CityFavorites from '../city-favorites/city-favorites';
+import {CardType} from '../../const';
 import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
+import Header from '../header/header';
+import CityFavorites from '../city-favorites/city-favorites';
 
 const Favorites = () => {
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link" to="/">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to="/">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardTypes.FAVORITE} city={city} />)}
+              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
@@ -49,7 +30,11 @@ const Favorites = () => {
   );
 };
 
-
-Favorites.propTypes = offerPropTypes;
+Favorites.propTypes = {
+  cityOffers: PropTypes.arrayOf(offerPropTypes),
+  activeCity: PropTypes.string,
+  isOffersLoaded: PropTypes.bool,
+  onLoadOffers: PropTypes.func,
+};
 
 export default Favorites;

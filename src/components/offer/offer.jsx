@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropType from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 
 const Offer = (props) => {
@@ -70,6 +71,11 @@ const Offer = (props) => {
   );
 };
 
-Offer.propTypes = offerPropTypes.offer;
+Offer.propTypes = {
+  offer: offerPropTypes,
+  CardType: PropType.string.isRequired,
+  onOfferFocus: PropType.func,
+  onOfferBlur: PropType.func,
+};
 
 export default Offer;
