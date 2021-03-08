@@ -41,9 +41,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes),
-  reviews: PropTypes.arrayOf(reviewPropTypes),
-  nearbyOffersArray: PropTypes.arrayOf(offerPropTypes),
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
+  nearbyOffersArray: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default App;

@@ -31,7 +31,7 @@ const Favorites = () => {
 };
 
 Favorites.propTypes = {
-  cityOffers: PropTypes.arrayOf(offerPropTypes),
+  cityOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   activeCity: PropTypes.string,
   isOffersLoaded: PropTypes.bool,
   onLoadOffers: PropTypes.func,

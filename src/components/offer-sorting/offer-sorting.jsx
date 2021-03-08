@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
 import {SortingType} from '../../const';
 import {ActionCreator} from '../../store/action';
 
-const OfferSorting = (props) => {
-  const {activeSorting, onChangeSorting} = props;
+const OfferSorting = () => {
+  const {activeSorting} = useSelector((state) => state.OFFERS);
+  const dispatch = useDispatch();
+
   const [openedSorting, setOpenedSorting] = useState(false);
 
   const handleSortingArrowClick = () => {
@@ -14,7 +15,7 @@ const OfferSorting = (props) => {
   };
 
   const handleSortingChange = (evt) => {
-    onChangeSorting(evt.target.innerText);
+    dispatch(ActionCreator.changeSorting(evt.target.innerText));
     setOpenedSorting(false);
   };
 
@@ -41,20 +42,4 @@ const OfferSorting = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  activeSorting: state.activeSorting
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeSorting(sorting) {
-    dispatch(ActionCreator.changeSorting(sorting));
-  }
-});
-
-OfferSorting.propTypes = {
-  activeSorting: PropTypes.string.isRequired,
-  onChangeSorting: PropTypes.func.isRequired
-};
-
-export {OfferSorting};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferSorting);
+export default OfferSorting;

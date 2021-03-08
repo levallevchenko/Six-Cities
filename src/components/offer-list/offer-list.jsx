@@ -21,7 +21,7 @@ const OfferList = (props) => {
 };
 
 OfferList.propTypes = {
-  cityOffers: PropTypes.arrayOf(offerPropTypes),
+  cityOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   CardType: PropTypes.string.isRequired,
   onOfferFocus: PropTypes.func.isRequired,
   onOfferBlur: PropTypes.func.isRequired,

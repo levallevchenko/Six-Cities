@@ -9,21 +9,6 @@ const Offer = (props) => {
   const roomLink = `/offer/${hotelId}`;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
 
-  // const getClass = (name) => {
-  //   return name;
-  // };
-
-  // const getArticleClass = (type) => {
-  //   switch (type) {
-  //     case `MAIN`:
-  //       getClass(`cities__place-card place-card`);
-  //       break;
-  //     case `FAVORITE`:
-  //       getClass(`favorites__card place-card`);
-  //       break;
-  //   }
-  // };
-
   const handleOfferFocus = () => onOfferFocus(offer);
 
   const getPremiumElement = () => <div className="place-card__mark"><span>Premium</span></div>;
