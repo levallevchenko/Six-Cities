@@ -4,6 +4,7 @@ export const ActionType = {
   LOAD_OFFERS: `offers/loadOffers`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_AUTH_INFO: `user/login`,
+  LOAD_AUTH_INFO: `user/loadAuthInfo`,
   REDIRECT_TO_ROUTE: `app/redirectToRoute`,
 };
 
@@ -32,4 +33,8 @@ export const ActionCreator = {
     type: ActionType.SET_AUTH_INFO,
     payload: info
   }),
+  loadAuthInfo: (info) => ({
+    type: ActionType.LOAD_AUTH_INFO,
+    payload: info
+  })
 };

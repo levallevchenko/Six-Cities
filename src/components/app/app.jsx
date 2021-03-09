@@ -1,19 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {reviewPropTypes} from '../../prop-types/review';
 import browserHistory from '../../browser-history';
+import {AppRoute} from '../../const';
+import {checkAuth} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Main from '../main/main';
 import Room from '../room/room';
 import Login from '../login/login';
 import Favorites from '../favorites/favorites';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import {AppRoute} from '../../const';
 
 const App = (props) => {
   const {offers, reviews, nearbyOffersArray} = props;
+  const {isAuthInfoLoaded} = useSelector((state) => state.USER);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isAuthInfoLoaded) {
+      dispatch((checkAuth()));
+    }
+  }, [isAuthInfoLoaded]);
+
+  if (!isAuthInfoLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BrowserRouter history={browserHistory}>

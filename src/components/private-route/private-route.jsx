@@ -5,7 +5,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
 const PrivateRoute = ({render, path, exact}) => {
-  const {authorizationStatus} = useSelector((state) => state.USER);
+  const {authStatus} = useSelector((state) => state.USER);
 
   return (
     <Route
@@ -13,7 +13,7 @@ const PrivateRoute = ({render, path, exact}) => {
       exact={exact}
       render={(routeProps) => {
         return (
-          authorizationStatus === AuthorizationStatus.AUTH
+          authStatus === AuthorizationStatus.AUTH
             ? render(routeProps)
             : <Redirect to={AppRoute.SIGN_IN} />
         );
