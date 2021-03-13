@@ -1,3 +1,8 @@
+export const ReviewLength = {
+  MIN: 50,
+  MAX: 300,
+};
+
 export const SortingType = {
   POPULAR: `Popular`,
   PRICE_LOW: `Price: low to high`,
