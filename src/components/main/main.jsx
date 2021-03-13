@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
 import {CardType} from '../../const';
-import {getCityOffers, sortOffers} from '../../utils/project';
 import {fetchOffersList} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Header from '../header/header';
@@ -11,11 +10,12 @@ import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import MainEmpty from '../main-empty/main-empty';
+import {getSortedCityOffers} from '../../store/offers/selectors';
 
 const Main = () => {
-  const {activeCity, offers, isOffersLoaded, activeSorting} = useSelector((state) => state.OFFERS);
+  const {activeCity, isOffersLoaded} = useSelector((state) => state.OFFERS);
+  const cityOffers = useSelector(getSortedCityOffers);
   const dispatch = useDispatch();
-  const cityOffers = sortOffers(getCityOffers(offers, activeCity), activeSorting);
 
   const [currentOffer, setCurrentOffer] = useState(null);
 

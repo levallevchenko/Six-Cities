@@ -12,6 +12,6 @@ export const getSortedCityOffers = createSelector(
     [getOffers, getActiveCity, getActiveSorting],
     (offers, city, sortingType) => {
       const cityOffers = getCityOffers(offers, city);
-      sortOffers(cityOffers, sortingType);
+      return sortOffers(cityOffers, sortingType);
     }
 );
