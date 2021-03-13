@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardType} from '../../const';
-import {favoriteOfferCities, getOffersInCity} from './favorites-filter';
+import {getFavoriteOfferCities, getOffersInCity} from './favorites-filter';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
 
-const Favorites = () => {
+const Favorites = ({offers}) => {
   return (
     <div className="page">
       <Header />
@@ -16,7 +16,7 @@ const Favorites = () => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoriteOfferCities.map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city)} CardType={CardType.FAVORITE} city={city} />)}
+              {getFavoriteOfferCities(offers).map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city, offers)} CardType={CardType.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
@@ -31,7 +31,7 @@ const Favorites = () => {
 };
 
 Favorites.propTypes = {
-  cityOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   activeCity: PropTypes.string,
   isOffersLoaded: PropTypes.bool,
   onLoadOffers: PropTypes.func,
