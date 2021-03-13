@@ -1,8 +1,9 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {reviewPropTypes} from '../../prop-types/review';
-import {CardType} from '../../const';
+import {CardType, AuthorizationStatus} from '../../const';
 import Header from '../header/header';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
@@ -10,9 +11,14 @@ import Offer from '../offer/offer';
 import Map from '../map/map';
 
 const Room = (props) => {
-  const {offer, reviews, nearbyOffers} = props;
-  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
+  const IMAGE_MAX_COUNT = 6;
+  const {reviews, nearbyOffers, offer} = props;
+
+  const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
+  const maxHotelImages = hotelImages.length > IMAGE_MAX_COUNT ? hotelImages.slice(0, IMAGE_MAX_COUNT) : hotelImages;
+
+  const {authStatus} = useSelector((state) => state.USER);
 
   // const Good = (props) => {
   //   const {good} = props
@@ -32,7 +38,7 @@ const Room = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {hotelImages.map((image, i) => {
+              {maxHotelImages.map((image, i) => {
                 return <div className="property__image-wrapper" key={{image} + i}>
                   <img className="property__image" src={image} alt="Photo studio" />
                 </div>;
@@ -110,7 +116,10 @@ const Room = (props) => {
               </div>
               <section className="property__reviews reviews">
                 <ReviewList reviews={reviews} />
-                <ReviewForm />
+                {authStatus === AuthorizationStatus.AUTH
+                  ? <ReviewForm id={hotelId} />
+                  : ``
+                }
               </section>
             </div>
           </div>

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {reviewPropTypes} from '../../prop-types/review';
 import Review from '../review/review';
 
-const ReviewList = (props) => {
-  const {reviews} = props;
+const ReviewList = ({reviews}) => {
 
   const reviewsCount = reviews.length;
 

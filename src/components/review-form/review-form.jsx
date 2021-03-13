@@ -1,19 +1,25 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {postComment} from '../../store/api-actions';
 import ReviewStar from './review-star/review-star';
 
 const STARS_COUNT = 5;
 const starsDescriptionArray = [`terribly`, `badly`, `not bad`, `good`, `perfect`];
 
 const ReviewForm = () => {
-
-  const [userForm, setUserForm] = useState({
+  const {offer} = useSelector((state) => state.OFFERS);
+  const dispatch = useDispatch();
+  const initialState = {
     rating: 0,
-    review: ``,
-  });
+    review: ``
+  };
+
+  const [userForm, setUserForm] = useState({initialState});
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    dispatch(postComment(userForm, offer.hotelId));
+    setUserForm({...userForm, ...initialState});
   };
 
   const handleFieldChange = (evt) => {
@@ -23,7 +29,6 @@ const ReviewForm = () => {
 
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
-    // evt.target.classList.toggle(`checked`);
     setUserForm({...userForm, [name]: value});
   };
 
@@ -43,9 +48,6 @@ const ReviewForm = () => {
         </p>
         <button className="reviews__submit form__submit button" type="submit">Submit</button>
       </div>
-      <h2>Check State:</h2>
-      <h4>Comment: {review}</h4>
-      <h4>Rating: {rating}</h4>
     </form>
   );
 };

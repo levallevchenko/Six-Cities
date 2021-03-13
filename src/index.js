@@ -9,8 +9,8 @@ import {createAPI} from './services/api';
 import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import App from './components/app/app';
-import {offers, nearbyOffersArray} from '../src/mocks/offers';
-import {reviews} from '../src/mocks/reviews';
+// Оставила моки только для favorites, позже получу с сервера
+import {offers} from '../src/mocks/offers';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -29,9 +29,7 @@ const store = configureStore({
 store.dispatch(checkAuth()).then(() => {
   ReactDOM.render(
       <Provider store={store}>
-        <App
-          offers = {offers} reviews = {reviews} nearbyOffersArray = {nearbyOffersArray}
-        />
+        <App offers={offers} />
       </Provider>,
       document.querySelector(`#root`)
   );
