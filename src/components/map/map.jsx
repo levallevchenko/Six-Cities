@@ -68,7 +68,7 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
   }, [points, currentOffer]);
 
   return (
-    <section className="cities__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} />
+    <section className="property__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} />
   );
 };
 
