@@ -7,6 +7,7 @@ const initialState = {
   activeSorting: SortingType.POPULAR,
   activeCity: CityName.PARIS,
   isOffersLoaded: false,
+  isCommentLoading: false,
   offers: [],
   offer: null,
   reviews: [],
@@ -36,7 +37,11 @@ const offers = createReducer(initialState, (builder) => {
     state.nearbyOffers = adaptOffersData(action.payload);
   });
   builder.addCase(ActionType.SET_COMMENT, (state, action) => {
+    state.isCommentLoading = false;
     state.reviews = adaptReviewsData(action.payload);
+  });
+  builder.addCase(ActionType.LOAD_COMMENT, (state, action) => {
+    state.isCommentLoading = action.payload;
   });
   builder.addCase(ActionType.SET_NOT_FOUND_OFFER, (state) => {
     state.offerNotFound = true;

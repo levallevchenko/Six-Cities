@@ -22,11 +22,12 @@ export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
 );
 
-export const postComment = ({review: comment, rating}, id) => (dispatch, _getState, api) => (
+export const postComment = ({review: comment, rating}, id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.loadComment(true));
   api.post(`/comments/${id}`, {comment, rating})
     .then(({data}) => dispatch(ActionCreator.setComment(data)))
-    .catch(() => {})
-);
+    .catch(() => {});
+};
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
