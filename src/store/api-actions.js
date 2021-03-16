@@ -15,28 +15,31 @@ export const fetchOffer = (id) => (dispatch, _getState, api) => (
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(ActionCreator.loadReviews(data)))
+    .catch(() => dispatch(ActionCreator.loadReviews([])))
 );
 
 export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}/nearby`)
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
+    .catch(() => dispatch(ActionCreator.loadNearbyOffers([])))
 );
 
 export const postComment = ({review: comment, rating}, id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.loadComment(true));
-  api.post(`/comments/${id}`, {comment, rating})
+  return api.post(`/comments/${id}`, {comment, rating})
     .then(({data}) => dispatch(ActionCreator.setComment(data)))
-    .then(() => dispatch(ActionCreator.submitComment(true)))
     .catch((err) => {
       dispatch(ActionCreator.loadComment(false));
       dispatch(ActionCreator.setError(err.message));
+      setTimeout(() => {
+        dispatch(ActionCreator.setError(null));
+      }, 3000);
     });
 };
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then(({data}) => dispatch(ActionCreator.setAuthInfo(data)))
-    .then(() => dispatch(ActionCreator.loadAuthInfo(true)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
@@ -47,4 +50,5 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
     .catch(() => {})
+    // to-do: добавить обработку
 );
