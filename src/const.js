@@ -80,3 +80,8 @@ export const ErrorMessageType = {
   NETWORK_ERROR: `Network unavailable`,
   BAD_REQUEST: `Invalid data format`,
 };
+
+export const FavoriteStatus = {
+  REMOVE: `0`,
+  ADD: `1`
+};

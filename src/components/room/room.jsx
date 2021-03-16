@@ -9,12 +9,13 @@ import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 import Offer from '../offer/offer';
 import Map from '../map/map';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 
 const Room = (props) => {
   const IMAGE_MAX_COUNT = 6;
   const {reviews, nearbyOffers, offer} = props;
 
-  const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
+  const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isPremium, hotelImages, city} = offer;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
   const maxHotelImages = hotelImages.length > IMAGE_MAX_COUNT ? hotelImages.slice(0, IMAGE_MAX_COUNT) : hotelImages;
 
@@ -47,12 +48,7 @@ const Room = (props) => {
                 <h1 className="property__name">
                   {hotelName}
                 </h1>
-                <button className={isFavorite ? `property__bookmark-button button property__bookmark-button--active` : `property__bookmark-button button`} type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton markupBlock={`property__`} hotelId={hotelId} width={`31`} height={`33`} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -124,7 +120,7 @@ const Room = (props) => {
                 : `Other places in the neighbourhood`}
             </h2>
             <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
+              {nearbyOffers.map((nearbyOffer) => <Offer key={nearbyOffer.hotelId} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
             </div>
           </section>
         </div>
