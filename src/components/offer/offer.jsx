@@ -9,7 +9,7 @@ const Offer = (props) => {
   const roomLink = `/offer/${hotelId}`;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
 
-  const handleOfferFocus = () => onOfferFocus(offer);
+  const handleOfferFocus = () => onOfferFocus ? onOfferFocus(offer) : null;
 
   const getPremiumElement = () => <div className="place-card__mark"><span>Premium</span></div>;
 
