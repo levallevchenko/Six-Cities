@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
-// import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import browserHistory from '../../browser-history';
 import {AppRoute} from '../../const';
-// import {checkAuth} from '../../store/api-actions';
-// import LoadingScreen from '../loading-screen/loading-screen';
+import {checkAuth} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Main from '../main/main';
 import RoomContainer from '../room/room-container';
 import Login from '../login/login';
@@ -15,21 +15,20 @@ import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 
 const App = ({offers}) => {
-  // Сначала этот вариант сработал, теперь бесконечная загрузка
-  // const {isAuthInfoLoaded} = useSelector((state) => state.USER);
-  // const dispatch = useDispatch();
+  const {isAuthInfoLoaded} = useSelector((state) => state.USER);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!isAuthInfoLoaded) {
-  //     dispatch((checkAuth()));
-  //   }
-  // }, [isAuthInfoLoaded]);
+  useEffect(() => {
+    if (!isAuthInfoLoaded) {
+      dispatch((checkAuth()));
+    }
+  }, [isAuthInfoLoaded]);
 
-  // if (!isAuthInfoLoaded) {
-  //   return (
-  //     <LoadingScreen />
-  //   );
-  // }
+  if (!isAuthInfoLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BrowserRouter history={browserHistory}>

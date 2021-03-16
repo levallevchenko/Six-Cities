@@ -11,6 +11,7 @@ const initialState = {
 const user = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.REQUIRED_AUTHORIZATION, (state, action) => {
     state.authStatus = action.payload;
+    state.isAuthInfoLoaded = true;
   });
   builder.addCase(ActionType.SET_AUTH_INFO, (state, action) => {
     state.authInfo = action.payload;

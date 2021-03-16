@@ -6,7 +6,6 @@ import rootReducer from './store/root-reducer';
 import {ActionCreator} from './store/action';
 import {redirect} from "./store/middlewares/redirect";
 import {createAPI} from './services/api';
-import {checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 import App from './components/app/app';
 // Оставила моки только для favorites, позже получу с сервера
@@ -26,11 +25,9 @@ const store = configureStore({
     }).concat(redirect)
 });
 
-store.dispatch(checkAuth()).then(() => {
-  ReactDOM.render(
-      <Provider store={store}>
-        <App offers={offers} />
-      </Provider>,
-      document.querySelector(`#root`)
-  );
-});
+ReactDOM.render(
+    <Provider store={store}>
+      <App offers={offers} />
+    </Provider>,
+    document.querySelector(`#root`)
+);
