@@ -7,6 +7,7 @@ export const ActionType = {
   LOAD_NEARBY_OFFERS: `offers/loadNearbyOffers`,
   SET_COMMENT: `offers/setComment`,
   LOAD_COMMENT: `offers/loadComment`,
+  SUBMIT_COMMENT: `offers/submitComment`,
   SET_NOT_FOUND_OFFER: `offers/setNotFoundOffer`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_AUTH_INFO: `user/login`,
@@ -45,6 +46,10 @@ export const ActionCreator = {
   }),
   loadComment: (info) => ({
     type: ActionType.LOAD_COMMENT,
+    payload: info
+  }),
+  submitComment: (info) => ({
+    type: ActionType.SUBMIT_COMMENT,
     payload: info
   }),
   setNotFoundOffer: () => ({

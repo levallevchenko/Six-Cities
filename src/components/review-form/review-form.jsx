@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {postComment} from '../../store/api-actions';
+import {ActionCreator} from '../../store/action';
 import {ReviewLength} from '../../const';
 import ReviewStar from './review-star/review-star';
 
@@ -8,7 +9,7 @@ const STARS_COUNT = 5;
 const starsDescriptionArray = [`terribly`, `badly`, `not bad`, `good`, `perfect`];
 
 const ReviewForm = () => {
-  const {offer, isCommentLoading} = useSelector((state) => state.OFFERS);
+  const {offer, isCommentLoading, isCommentSubmit} = useSelector((state) => state.OFFERS);
   const dispatch = useDispatch();
 
   const initialState = {
@@ -25,8 +26,13 @@ const ReviewForm = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(postComment(userForm, offer.hotelId));
-    setUserForm({...userForm, ...initialState});
   };
+
+  if (isCommentSubmit) {
+    setUserForm({...userForm, ...initialState});
+  }
+
+  dispatch(ActionCreator.submitComment(false));
 
   const handleFieldChange = (evt) => {
     const {name, value} = evt.target;

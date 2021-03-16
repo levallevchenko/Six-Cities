@@ -8,6 +8,7 @@ const initialState = {
   activeCity: CityName.PARIS,
   isOffersLoaded: false,
   isCommentLoading: false,
+  isCommentSubmit: false,
   offers: [],
   offer: null,
   reviews: [],
@@ -42,6 +43,9 @@ const offers = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.LOAD_COMMENT, (state, action) => {
     state.isCommentLoading = action.payload;
+  });
+  builder.addCase(ActionType.SUBMIT_COMMENT, (state, action) => {
+    state.isCommentSubmit = action.payload;
   });
   builder.addCase(ActionType.SET_NOT_FOUND_OFFER, (state) => {
     state.offerNotFound = true;

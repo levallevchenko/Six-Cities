@@ -26,7 +26,8 @@ export const postComment = ({review: comment, rating}, id) => (dispatch, _getSta
   dispatch(ActionCreator.loadComment(true));
   api.post(`/comments/${id}`, {comment, rating})
     .then(({data}) => dispatch(ActionCreator.setComment(data)))
-    .catch(() => {});
+    .then(() => dispatch(ActionCreator.submitComment(true)))
+    .catch(() => dispatch(ActionCreator.loadComment(false)));
 };
 
 export const checkAuth = () => (dispatch, _getState, api) => (
