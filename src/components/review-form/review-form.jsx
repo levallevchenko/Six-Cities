@@ -2,14 +2,17 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {postComment} from '../../store/api-actions';
 import {ActionCreator} from '../../store/action';
-import {ReviewLength} from '../../const';
+import {ReviewLength, ErrorMessageType} from '../../const';
 import ReviewStar from './review-star/review-star';
+import Error from '../error/error';
 
 const STARS_COUNT = 5;
 const starsDescriptionArray = [`terribly`, `badly`, `not bad`, `good`, `perfect`];
 
 const ReviewForm = () => {
   const {offer, isCommentLoading, isCommentSubmit} = useSelector((state) => state.OFFERS);
+  const {error} = useSelector((state) => state.APP);
+  const isNetworkError = error === ErrorMessageType.NETWORK_ERROR ? true : false;
   const dispatch = useDispatch();
 
   const initialState = {
@@ -64,6 +67,7 @@ const ReviewForm = () => {
           {isCommentLoading ? `Loading..` : `Submit`}
         </button>
       </div>
+      {isNetworkError ? <Error /> : ``}
     </form>
   );
 };

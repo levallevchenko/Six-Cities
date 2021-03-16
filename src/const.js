@@ -1,5 +1,5 @@
 export const ReviewLength = {
-  MIN: 50,
+  MIN: 1,
   MAX: 300,
 };
 
@@ -74,4 +74,9 @@ export const APIRoute = {
   FAVORITES: `/favorite`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
+};
+
+export const ErrorMessageType = {
+  NETWORK_ERROR: `Network unavailable`,
+  BAD_REQUEST: `Invalid data format`,
 };
