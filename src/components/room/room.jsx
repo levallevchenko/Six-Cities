@@ -19,15 +19,7 @@ const Room = (props) => {
   const maxHotelImages = hotelImages.length > IMAGE_MAX_COUNT ? hotelImages.slice(0, IMAGE_MAX_COUNT) : hotelImages;
 
   const {authStatus} = useSelector((state) => state.USER);
-
-  // const Good = (props) => {
-  //   const {good} = props
-  //   return (
-  //     <li className="property__inside-item">
-  //       {good}
-  //     </li>
-  //   );
-  // }
+  const {error} = useSelector((state) => state.APP);
 
   const location = city.location;
 
@@ -87,7 +79,6 @@ const Room = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {/* {goods.map((good, i) => <Good key={good + i} good={good} />)} */}
                   {goods.map((good, i) => {
                     return <li className="property__inside-item" key={{good} + i}>
                       {good}
@@ -127,7 +118,11 @@ const Room = (props) => {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">
+              {error
+                ? `Oops..It seems that nearby places didn't load. Sorry!`
+                : `Other places in the neighbourhood`}
+            </h2>
             <div className="near-places__list places__list">
               {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
             </div>

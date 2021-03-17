@@ -8,12 +8,13 @@ const initialState = {
   activeCity: CityName.PARIS,
   isOffersLoaded: false,
   isCommentLoading: false,
+  isOffersLoadingFailed: false,
   isCommentSubmit: false,
   offers: [],
   offer: null,
   reviews: [],
   nearbyOffers: [],
-  offerNotFound: false
+  offerNotFound: false,
 };
 
 const offers = createReducer(initialState, (builder) => {
@@ -49,6 +50,9 @@ const offers = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.SET_NOT_FOUND_OFFER, (state) => {
     state.offerNotFound = true;
+  });
+  builder.addCase(ActionType.SET_OFFERS_LOADING_FAILED, (state) => {
+    state.isOffersLoadingFailed = true;
   });
 });
 

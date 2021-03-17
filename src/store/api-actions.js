@@ -1,9 +1,17 @@
 import {ActionCreator} from "./action";
 import {AuthorizationStatus, APIRoute} from "../const";
+import Swal from 'sweetalert2';
+
+const errorHandler = (err) => Swal.fire({
+  icon: `error`,
+  title: `Oops...`,
+  text: err.message + `. Please try again`,
+});
 
 export const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
+    .catch(() => dispatch(ActionCreator.setOffersLoadingFailed()))
 );
 
 export const fetchOffer = (id) => (dispatch, _getState, api) => (
@@ -12,17 +20,23 @@ export const fetchOffer = (id) => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setNotFoundOffer()))
 );
 
-export const fetchReviews = (id) => (dispatch, _getState, api) => (
+export const fetchReviews = (id) => (dispatch, _getState, api) => {
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(ActionCreator.loadReviews(data)))
-    .catch(() => dispatch(ActionCreator.loadReviews([])))
-);
+    .catch((err) => {
+      dispatch(ActionCreator.loadReviews([]));
+      dispatch(ActionCreator.setError(err.message));
+    });
+};
 
-export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => {
   api.get(`/hotels/${id}/nearby`)
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
-    .catch(() => dispatch(ActionCreator.loadNearbyOffers([])))
-);
+    .catch((err) => {
+      dispatch(ActionCreator.loadNearbyOffers([]));
+      dispatch(ActionCreator.setError(err.message));
+    });
+};
 
 export const postComment = ({review: comment, rating}, id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.loadComment(true));
@@ -31,9 +45,7 @@ export const postComment = ({review: comment, rating}, id) => (dispatch, _getSta
     .catch((err) => {
       dispatch(ActionCreator.loadComment(false));
       dispatch(ActionCreator.setError(err.message));
-      setTimeout(() => {
-        dispatch(ActionCreator.setError(null));
-      }, 3000);
+      errorHandler(err);
     });
 };
 
@@ -49,6 +61,7 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
     .then(({data}) => dispatch(ActionCreator.setAuthInfo(data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
-    .catch(() => {})
-    // to-do: добавить обработку
+    .catch((err) => {
+      errorHandler(err);
+    })
 );

@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_COMMENT: `offers/loadComment`,
   SUBMIT_COMMENT: `offers/submitComment`,
   SET_NOT_FOUND_OFFER: `offers/setNotFoundOffer`,
+  SET_OFFERS_LOADING_FAILED: `offers/setOffersLoadingFailed`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   SET_AUTH_INFO: `user/login`,
   LOAD_AUTH_INFO: `user/loadAuthInfo`,
@@ -55,6 +56,9 @@ export const ActionCreator = {
   }),
   setNotFoundOffer: () => ({
     type: ActionType.SET_NOT_FOUND_OFFER,
+  }),
+  setOffersLoadingFailed: () => ({
+    type: ActionType.SET_OFFERS_LOADING_FAILED,
   }),
   setAuthInfo: (info) => ({
     type: ActionType.SET_AUTH_INFO,

@@ -13,7 +13,7 @@ import MainEmpty from '../main-empty/main-empty';
 import {getSortedCityOffers} from '../../store/offers/selectors';
 
 const Main = () => {
-  const {activeCity, isOffersLoaded} = useSelector((state) => state.OFFERS);
+  const {activeCity, isOffersLoaded, isOffersLoadingFailed} = useSelector((state) => state.OFFERS);
   const cityOffers = useSelector(getSortedCityOffers);
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const Main = () => {
     }
   }, [isOffersLoaded]);
 
-  if (!isOffersLoaded) {
+  if (!isOffersLoaded && !isOffersLoadingFailed) {
     return (
       <LoadingScreen />
     );
@@ -54,8 +54,9 @@ const Main = () => {
           </section>
         </div>
         <div className="cities">
-          {placesCount === 0 ? <MainEmpty /> :
-            <div className="cities__places-container container">
+          {placesCount === 0 || isOffersLoadingFailed
+            ? <MainEmpty />
+            : <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{placesCount} places to stay in {activeCity}</b>
