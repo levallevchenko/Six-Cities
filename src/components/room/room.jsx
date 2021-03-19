@@ -16,6 +16,10 @@ const Room = (props) => {
   const {reviews, nearbyOffers, offer} = props;
 
   const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isPremium, hotelImages, city} = offer;
+
+  const allPoints = nearbyOffers.slice();
+  allPoints.push(offer);
+
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
   const maxHotelImages = hotelImages.length > IMAGE_MAX_COUNT ? hotelImages.slice(0, IMAGE_MAX_COUNT) : hotelImages;
 
@@ -110,7 +114,7 @@ const Room = (props) => {
               </section>
             </div>
           </div>
-          <Map location={location} points={nearbyOffers} />
+          <Map location={location} points={allPoints} currentOffer={offer} />
         </section>
         <div className="container">
           <section className="near-places places">
