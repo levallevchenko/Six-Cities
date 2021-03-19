@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 
 const Offer = (props) => {
-  const {offer, CardType, onOfferFocus, onOfferBlur} = props;
+  const {offer, CardType, onOfferFocus = () => {}, onOfferBlur} = props;
   const {previewSrc, price, hotelName, hotelId, isPremium, isFavorite, offerType, rating} = offer;
   const roomLink = `/offer/${hotelId}`;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;

@@ -1,3 +1,8 @@
+export const ReviewLength = {
+  MIN: 1,
+  MAX: 300,
+};
+
 export const SortingType = {
   POPULAR: `Popular`,
   PRICE_LOW: `Price: low to high`,
@@ -66,10 +71,12 @@ export const AppRoute = {
 
 export const APIRoute = {
   OFFERS: `/hotels`,
-  OFFER: `/hotels/:id`,
-  OFFERS_NEARBY: `/hotels/:hotel_id/nearby`,
   FAVORITES: `/favorite`,
-  REVIEWS: `/comments/:hotel_id`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
+};
+
+export const ErrorMessageType = {
+  NETWORK_ERROR: `Network unavailable`,
+  BAD_REQUEST: `Invalid data format`,
 };

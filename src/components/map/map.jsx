@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import classNames from 'classnames';
 import {offerPropTypes} from '../../prop-types/offer';
 
 import "leaflet/dist/leaflet.css";
@@ -68,7 +69,10 @@ const Map = ({location, points, isMainMap, currentOffer}) => {
   }, [points, currentOffer]);
 
   return (
-    <section className="cities__map map" id="map" style={isMainMap ? {height: `auto`} : {height: `579px`}} />
+    <section className={classNames(`map`, {'cities__map': isMainMap}, {'property__map': !isMainMap})}
+      id="map"
+      style={isMainMap ? {height: `auto`} : {height: `579px`}}
+    />
   );
 };
 

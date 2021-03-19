@@ -1,8 +1,9 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {reviewPropTypes} from '../../prop-types/review';
-import {CardType} from '../../const';
+import {CardType, AuthorizationStatus} from '../../const';
 import Header from '../header/header';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
@@ -10,18 +11,15 @@ import Offer from '../offer/offer';
 import Map from '../map/map';
 
 const Room = (props) => {
-  const {offer, reviews, nearbyOffers} = props;
-  const {hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
-  const ratingStarWidth = `${Math.round(rating) * 20}%`;
+  const IMAGE_MAX_COUNT = 6;
+  const {reviews, nearbyOffers, offer} = props;
 
-  // const Good = (props) => {
-  //   const {good} = props
-  //   return (
-  //     <li className="property__inside-item">
-  //       {good}
-  //     </li>
-  //   );
-  // }
+  const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isFavorite, isPremium, hotelImages, city} = offer;
+  const ratingStarWidth = `${Math.round(rating) * 20}%`;
+  const maxHotelImages = hotelImages.length > IMAGE_MAX_COUNT ? hotelImages.slice(0, IMAGE_MAX_COUNT) : hotelImages;
+
+  const {authStatus} = useSelector((state) => state.USER);
+  const {error} = useSelector((state) => state.APP);
 
   const location = city.location;
 
@@ -32,7 +30,7 @@ const Room = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {hotelImages.map((image, i) => {
+              {maxHotelImages.map((image, i) => {
                 return <div className="property__image-wrapper" key={{image} + i}>
                   <img className="property__image" src={image} alt="Photo studio" />
                 </div>;
@@ -81,7 +79,6 @@ const Room = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {/* {goods.map((good, i) => <Good key={good + i} good={good} />)} */}
                   {goods.map((good, i) => {
                     return <li className="property__inside-item" key={{good} + i}>
                       {good}
@@ -110,7 +107,10 @@ const Room = (props) => {
               </div>
               <section className="property__reviews reviews">
                 <ReviewList reviews={reviews} />
-                <ReviewForm />
+                {authStatus === AuthorizationStatus.AUTH
+                  ? <ReviewForm id={hotelId} />
+                  : ``
+                }
               </section>
             </div>
           </div>
@@ -118,7 +118,11 @@ const Room = (props) => {
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">
+              {error
+                ? `Oops..It seems that nearby places didn't load. Sorry!`
+                : `Other places in the neighbourhood`}
+            </h2>
             <div className="near-places__list places__list">
               {nearbyOffers.map((nearbyOffer, i) => <Offer key={nearbyOffer.hotelId + i} offer={nearbyOffer} CardType = {CardType.MAIN} />)}
             </div>

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
 import {CardType} from '../../const';
-import {getCityOffers, sortOffers} from '../../utils/project';
 import {fetchOffersList} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Header from '../header/header';
@@ -11,11 +10,12 @@ import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import MainEmpty from '../main-empty/main-empty';
+import {getSortedCityOffers} from '../../store/offers/selectors';
 
 const Main = () => {
-  const {activeCity, offers, isOffersLoaded, activeSorting} = useSelector((state) => state.OFFERS);
+  const {activeCity, isOffersLoaded, isOffersLoadingFailed} = useSelector((state) => state.OFFERS);
+  const cityOffers = useSelector(getSortedCityOffers);
   const dispatch = useDispatch();
-  const cityOffers = sortOffers(getCityOffers(offers, activeCity), activeSorting);
 
   const [currentOffer, setCurrentOffer] = useState(null);
 
@@ -25,7 +25,7 @@ const Main = () => {
     }
   }, [isOffersLoaded]);
 
-  if (!isOffersLoaded) {
+  if (!isOffersLoaded && !isOffersLoadingFailed) {
     return (
       <LoadingScreen />
     );
@@ -54,8 +54,9 @@ const Main = () => {
           </section>
         </div>
         <div className="cities">
-          {placesCount === 0 ? <MainEmpty /> :
-            <div className="cities__places-container container">
+          {placesCount === 0 || isOffersLoadingFailed
+            ? <MainEmpty />
+            : <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{placesCount} places to stay in {activeCity}</b>
