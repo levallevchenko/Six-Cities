@@ -58,7 +58,7 @@ export const postFavorite = (id, status) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
     .then(({data}) => dispatch(ActionCreator[data[`is_favorite`] ? `addFavorite` : `removeFavorite`](data)))
     .catch(() => {
-      dispatch(ActionCreator.redirectToRoute(AppRoute.LOGIN));
+      dispatch(ActionCreator.redirectToRoute(AppRoute.SIGN_IN));
     })
 );
 
