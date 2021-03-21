@@ -1,7 +1,7 @@
 export const MAX_REVIEW_COUNT = 10;
 
 export const ReviewLength = {
-  MIN: 1,
+  MIN: 50,
   MAX: 300,
 };
 
