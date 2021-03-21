@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router as BrowserRouter, Redirect} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import browserHistory from '../../browser-history';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {checkAuth} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Main from '../main/main';
@@ -15,8 +15,10 @@ import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 
 const App = ({offers}) => {
-  const {isAuthInfoLoaded} = useSelector((state) => state.USER);
+  const {isAuthInfoLoaded, authStatus} = useSelector((state) => state.USER);
   const dispatch = useDispatch();
+
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
 
   useEffect(() => {
     if (!isAuthInfoLoaded) {
@@ -40,7 +42,7 @@ const App = ({offers}) => {
           <RoomContainer />
         </Route>
         <Route exact path={AppRoute.SIGN_IN}>
-          <Login />
+          {isAuthorized ? <Redirect to={AppRoute.MAIN} /> : <Login />}
         </Route>
         <PrivateRoute exact
           path={AppRoute.FAVORITES}
