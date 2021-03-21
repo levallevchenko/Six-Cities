@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardType} from '../../const';
 import {fetchFavorites} from '../../store/api-actions';
-import {getFavoriteOfferCities, getOffersInCity} from '../../store/offers/selectors';
+import {getFavoriteOfferCities} from '../../store/offers/selectors';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
 
 const Favorites = () => {
   const {favoriteOffers} = useSelector((state) => state.OFFERS);
   const favoriteOffersCities = useSelector(getFavoriteOfferCities);
-
-  const getFavoriteOffersInCity = (city) => useSelector(getOffersInCity(city));
   const dispatch = useDispatch();
+
+  const getFavoriteOffersInCity = (city) => favoriteOffers.filter((offer) => offer.city.name === city);
 
   useEffect(() => {
     dispatch(fetchFavorites());

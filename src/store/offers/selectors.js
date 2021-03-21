@@ -31,8 +31,3 @@ export const getFavorite = (hotelId) => createSelector(
     [getFavoriteOffers],
     (favoriteOffers) => favoriteOffers.find((item) => item.hotelId === hotelId)
 );
-
-export const getOffersInCity = (city) => createSelector(
-    [getFavoriteOffers],
-    (favoriteOffers) => favoriteOffers.filter((offer) => offer.city.name === city)
-);
