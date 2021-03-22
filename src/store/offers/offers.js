@@ -14,6 +14,7 @@ const initialState = {
   offer: null,
   reviews: [],
   nearbyOffers: [],
+  favoriteOffers: [],
   offerNotFound: false,
 };
 
@@ -26,6 +27,7 @@ const offers = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.LOAD_OFFERS, (state, action) => {
     state.offers = adaptOffersData(action.payload);
+    state.favoriteOffers = state.offers.filter((item) => item.isFavorite);
     state.isOffersLoaded = true;
   });
   builder.addCase(ActionType.LOAD_OFFER_DATA, (state, action) => {
@@ -37,6 +39,15 @@ const offers = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.LOAD_NEARBY_OFFERS, (state, action) => {
     state.nearbyOffers = adaptOffersData(action.payload);
+  });
+  builder.addCase(ActionType.LOAD_FAVORITE_OFFERS, (state, action) => {
+    state.favoriteOffers = adaptOffersData(action.payload);
+  });
+  builder.addCase(ActionType.ADD_FAVORITE, (state, action) => {
+    state.favoriteOffers.push(adaptOfferData(action.payload));
+  });
+  builder.addCase(ActionType.REMOVE_FAVORITE, (state, action) => {
+    state.favoriteOffers = state.favoriteOffers.filter((item) => item.hotelId !== action.payload.id);
   });
   builder.addCase(ActionType.SET_COMMENT, (state, action) => {
     state.isCommentLoading = false;

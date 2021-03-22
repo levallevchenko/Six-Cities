@@ -19,8 +19,10 @@ const ReviewForm = () => {
   const [userForm, setUserForm] = useState({initialState});
 
   const reviewLength = userForm.review ? userForm.review.length : 0;
-  const isReviewLengthOk = reviewLength >= ReviewLength.MIN && reviewLength <= ReviewLength.MAX ? true : false;
-  const isSubmitDisabled = userForm.rating && userForm.review && isReviewLengthOk && !isCommentLoading ? false : true;
+  const isReviewLengthOk = reviewLength >= ReviewLength.MIN && reviewLength <= ReviewLength.MAX;
+  const isSubmitNotDisabled = userForm.rating && userForm.review && isReviewLengthOk && !isCommentLoading;
+
+  console.log(isReviewLengthOk, isSubmitNotDisabled);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -46,14 +48,14 @@ const ReviewForm = () => {
       <div className="reviews__rating-form form__rating">
         {starIds.map((id) => <ReviewStar key={id} id = {id} onInputChange = {handleInputChange} rating = {id + 1} title = {starsDescriptionArray[id]} checked = {rating === id + 1} />)}
       </div>
-      <textarea onChange={handleFieldChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review} disabled={isCommentLoading ? true : false} />
+      <textarea onChange={handleFieldChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review} disabled={isCommentLoading} />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
-          type="submit" disabled={isSubmitDisabled}>
+          type="submit" disabled={!isSubmitNotDisabled}>
           {isCommentLoading ? `Loading..` : `Submit`}
         </button>
       </div>

@@ -5,6 +5,10 @@ export const ActionType = {
   LOAD_OFFER_DATA: `offers/loadOfferData`,
   LOAD_REVIEWS: `offers/loadReviews`,
   LOAD_NEARBY_OFFERS: `offers/loadNearbyOffers`,
+  LOAD_FAVORITE_OFFERS: `offers/loadFavoriteOffers`,
+  SET_FAVORITE: `offers/setFavorite`,
+  ADD_FAVORITE: `offers/addFavorite`,
+  REMOVE_FAVORITE: `offers/removeFavorite`,
   SET_COMMENT: `offers/setComment`,
   LOAD_COMMENT: `offers/loadComment`,
   SUBMIT_COMMENT: `offers/submitComment`,
@@ -41,6 +45,22 @@ export const ActionCreator = {
   loadNearbyOffers: (nearby) => ({
     type: ActionType.LOAD_NEARBY_OFFERS,
     payload: nearby,
+  }),
+  loadFavoriteOffers: (favorites) => ({
+    type: ActionType.LOAD_FAVORITE_OFFERS,
+    payload: favorites,
+  }),
+  setFavorite: (favorite) => ({
+    type: ActionType.SET_FAVORITE,
+    payload: favorite
+  }),
+  addFavorite: (offer) => ({
+    type: ActionType.ADD_FAVORITE,
+    payload: offer
+  }),
+  removeFavorite: (offer) => ({
+    type: ActionType.REMOVE_FAVORITE,
+    payload: offer
   }),
   setComment: (comment) => ({
     type: ActionType.SET_COMMENT,

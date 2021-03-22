@@ -1,5 +1,7 @@
+export const MAX_REVIEW_COUNT = 10;
+
 export const ReviewLength = {
-  MIN: 1,
+  MIN: 50,
   MAX: 300,
 };
 
@@ -79,4 +81,9 @@ export const APIRoute = {
 export const ErrorMessageType = {
   NETWORK_ERROR: `Network unavailable`,
   BAD_REQUEST: `Invalid data format`,
+};
+
+export const FavoriteStatus = {
+  REMOVE: `0`,
+  ADD: `1`
 };

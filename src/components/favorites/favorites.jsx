@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {offerPropTypes} from '../../prop-types/offer';
 import {CardType} from '../../const';
-import {getFavoriteOfferCities, getOffersInCity} from './favorites-filter';
+import {fetchFavorites} from '../../store/api-actions';
+import {getFavoriteOfferCities} from '../../store/offers/selectors';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
 
-const Favorites = ({offers}) => {
+const Favorites = () => {
+  const {favoriteOffers} = useSelector((state) => state.OFFERS);
+  const favoriteOffersCities = useSelector(getFavoriteOfferCities);
+  const dispatch = useDispatch();
+
+  const getFavoriteOffersInCity = (city) => favoriteOffers.filter((offer) => offer.city.name === city);
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [favoriteOffers]);
+
   return (
     <div className="page">
       <Header />
@@ -16,7 +28,7 @@ const Favorites = ({offers}) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {getFavoriteOfferCities(offers).map((city, id) => <CityFavorites key={city + id} offers={getOffersInCity(city, offers)} CardType={CardType.FAVORITE} city={city} />)}
+              {favoriteOffersCities.map((city, id) => <CityFavorites key={city + id} offers={getFavoriteOffersInCity(city)} CardType={CardType.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
