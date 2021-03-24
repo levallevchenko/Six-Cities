@@ -1,7 +1,12 @@
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../services/api';
 import {ActionType} from '../action';
+import {checkAuth, login} from '../api-actions';
 import {initialState, user} from './user';
 import {authInfoMock} from './user-test-mocks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, APIRoute, AppRoute} from '../../const';
+
+const api = createAPI(() => {});
 
 describe(`Reducers work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -63,5 +68,60 @@ describe(`Reducers work correctly`, () => {
     };
 
     expect(user(initialState, requireNoAuthorizationAction)).toEqual(expectedState);
+  });
+});
+
+describe(`Async operation work correctly`, () => {
+  it(`Should make a correct API call to /login`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const checkAuthLoader = checkAuth();
+
+    apiMock
+      .onGet(APIRoute.LOGIN)
+      .reply(200, {});
+
+    return checkAuthLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_AUTH_INFO,
+          payload: {},
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /login`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loginLoader = login(authInfoMock);
+
+    apiMock
+      .onPost(APIRoute.LOGIN)
+      .reply(200, authInfoMock);
+
+    return loginLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(3);
+
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_AUTH_INFO,
+          payload: authInfoMock,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ActionType.REDIRECT_TO_ROUTE,
+          payload: AppRoute.MAIN,
+        });
+      });
   });
 });
