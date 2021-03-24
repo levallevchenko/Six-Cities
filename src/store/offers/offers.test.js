@@ -1,7 +1,14 @@
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../services/api';
 import {ActionType} from '../action';
+import {fetchOffersList, fetchOffer, fetchFavorites, postComment, postFavorite} from '../api-actions';
+// import {fetchReviews, fetchNearbyOffers} from '../api-actions';
 import {initialState, offers} from './offers';
 import {offersMock, offersAdaptedMock, favoriteOffersMock, favoriteOffersAdaptedMock, offerDataMock, offerDataAdaptedMock} from './offers-test-mocks';
-import {reviewsMock, reviewsAdaptedMock} from './reviews-test-mocks';
+import {reviewsMock, reviewsAdaptedMock, reviewDataMock} from './reviews-test-mocks';
+import {APIRoute, AppRoute} from '../../const';
+
+const api = createAPI(() => {});
 
 describe(`Reducers work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -178,5 +185,327 @@ describe(`Reducers work correctly`, () => {
     };
 
     expect(offers(initialState, setNotFoundOfferAction)).toEqual(expectedState);
+  });
+});
+
+describe(`Async operation work correctly`, () => {
+  it(`Should make a correct API call to /hotels`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchOffersListLoader = fetchOffersList();
+
+    apiMock
+      .onGet(APIRoute.OFFERS)
+      .reply(200, offersMock);
+
+    return fetchOffersListLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_OFFERS,
+          payload: offersMock,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /hotels/id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchOfferDataLoader = fetchOffer(1);
+
+    apiMock
+      .onGet(`/hotels/1`)
+      .reply(200, offerDataMock);
+
+    return fetchOfferDataLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_OFFER_DATA,
+          payload: offerDataMock,
+        });
+      });
+  });
+
+  // Исправить ошибку
+  // it(`Should make a correct API call to /comments/id to get reviews`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fetchReviewsLoader = fetchReviews(1);
+
+  //   apiMock
+  //     .onGet(`comments/1`)
+  //     .reply(200, reviewsMock);
+
+  //   return fetchReviewsLoader(dispatch, () => {}, api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(1);
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.LOAD_REVIEWS,
+  //         payload: reviewsMock,
+  //       });
+  //     });
+  // });
+
+  // Исправить ошибку
+  // it(`Should make a correct API call to /hotels/id/nearby`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fetchNearbyOffersLoader = fetchNearbyOffers(1);
+
+  //   apiMock
+  //     .onGet(`/hotels/1/nearby`)
+  //     .reply(200, offersMock);
+
+  //   return fetchNearbyOffersLoader(dispatch, () => {}, api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(1);
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.LOAD_NEARBY_OFFERS,
+  //         payload: offersMock,
+  //       });
+  //     });
+  // });
+
+  it(`Should make a correct API call to /favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchFavoritesLoader = fetchFavorites();
+
+    apiMock
+      .onGet(APIRoute.FAVORITES)
+      .reply(200, offersMock);
+
+    return fetchFavoritesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITE_OFFERS,
+          payload: offersMock,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /comments/id to post review`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postCommentLoader = postComment(reviewDataMock, 1);
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200, [...reviewsMock, reviewDataMock]);
+
+    return postCommentLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_COMMENT,
+          payload: true,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_COMMENT,
+          payload: [...reviewsMock, reviewDataMock],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /favorite/id/status to mark offer as favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postFavoriteLoader = postFavorite(1, 1);
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, {...offerDataMock, "is_favorite": true});
+
+    return postFavoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.ADD_FAVORITE,
+          payload: {...offerDataMock, "is_favorite": true}
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /favorite/id/status to mark offer as not favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postFavoriteLoader = postFavorite(1, 0);
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(200, {...offerDataMock, "is_favorite": false});
+
+    return postFavoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REMOVE_FAVORITE,
+          payload: {...offerDataMock, "is_favorite": false}
+        });
+      });
+  });
+});
+
+describe(`Async operation catch errors correctly`, () => {
+  it(`Should catch offers load error`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchOffersListLoader = fetchOffersList();
+
+    apiMock
+      .onGet(APIRoute.OFFERS)
+      .reply(500);
+
+    return fetchOffersListLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_OFFERS_LOADING_FAILED,
+        });
+      });
+  });
+
+  it(`Should catch bad request to offer`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchOfferLoader = fetchOffer(0);
+
+    apiMock
+      .onGet(`/hotels/0`)
+      .reply(404);
+
+    return fetchOfferLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_NOT_FOUND_OFFER,
+        });
+      });
+  });
+
+  // Исправить ошибку
+  // it(`Should catch reviews load error`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fetchReviewsLoader = fetchReviews(0);
+
+  //   apiMock
+  //     .onGet(`/comments/0`)
+  //     .reply(500, `error`);
+
+  //   return fetchReviewsLoader(dispatch, () => {}, api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(2);
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.LOAD_REVIEWS,
+  //         payload: [],
+  //       });
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //         type: ActionType.SET_ERROR,
+  //         payload: `error`
+  //       });
+  //     });
+  // });
+
+  // Исправить ошибку
+  // it(`Should catch nearby offers load error`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const fetchReviewsLoader = fetchReviews(0);
+
+  //   apiMock
+  //     .onGet(`/hotels/0/nearby`)
+  //     .reply(500, `error`);
+
+  //   return fetchReviewsLoader(dispatch, () => {}, api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(2);
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.LOAD_NEARBY_OFFERS,
+  //         payload: [],
+  //       });
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //         type: ActionType.SET_ERROR,
+  //         payload: `error`
+  //       });
+  //     });
+  // });
+
+  // Исправить ошибку
+  // it(`Should catch network problems error when post comment`, () => {
+  //   const apiMock = new MockAdapter(api);
+  //   const dispatch = jest.fn();
+  //   const postCommentLoader = postComment(reviewDataMock, 0);
+
+  //   apiMock
+  //     .onPost(`/comments/0`)
+  //     .reply(400, {});
+
+  //   return postCommentLoader(dispatch, () => {}, api)
+  //     .then(() => {
+  //       expect(dispatch).toHaveBeenCalledTimes(3);
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //         type: ActionType.LOAD_COMMENT,
+  //         payload: false
+  //       });
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //         type: ActionType.SET_ERROR,
+  //         payload: `error`
+  //       });
+
+  //       expect(dispatch).toHaveBeenNthCalledWith(3, {
+  //         payload: {}
+  //       });
+  //     });
+  // });
+
+  it(`Should catch no authorization status when mark offer as favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postFavoriteLoader = postFavorite(1, 1);
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(401, AppRoute.SIGN_IN);
+
+    return postFavoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REDIRECT_TO_ROUTE,
+          payload: AppRoute.SIGN_IN
+        });
+      });
+  });
+
+  it(`Should catch no authorization status when mark offer as not favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postFavoriteLoader = postFavorite(1, 0);
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(401, AppRoute.SIGN_IN);
+
+    return postFavoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REDIRECT_TO_ROUTE,
+          payload: AppRoute.SIGN_IN
+        });
+      });
   });
 });
