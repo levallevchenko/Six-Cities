@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../services/api';
 import {ActionType} from '../action';
 import {fetchOffersList, fetchOffer, fetchFavorites, postComment, postFavorite} from '../api-actions';
-// import {fetchReviews, fetchNearbyOffers} from '../api-actions';
+import {fetchReviews, fetchNearbyOffers} from '../api-actions';
 import {initialState, offers} from './offers';
 import {offersMock, offersAdaptedMock, favoriteOffersMock, favoriteOffersAdaptedMock, offerDataMock, offerDataAdaptedMock} from './offers-test-mocks';
 import {reviewsMock, reviewsAdaptedMock, reviewDataMock} from './reviews-test-mocks';
@@ -227,45 +227,45 @@ describe(`Async operation work correctly`, () => {
       });
   });
 
-  // Исправить ошибку
-  // it(`Should make a correct API call to /comments/id to get reviews`, () => {
-  //   const apiMock = new MockAdapter(api);
-  //   const dispatch = jest.fn();
-  //   const fetchReviewsLoader = fetchReviews(1);
+  // Заменила на круглые скобки
+  it(`Should make a correct API call to /comments/id to get reviews`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchReviewsLoader = fetchReviews(1);
 
-  //   apiMock
-  //     .onGet(`comments/1`)
-  //     .reply(200, reviewsMock);
+    apiMock
+      .onGet(`comments/1`)
+      .reply(200, reviewsMock);
 
-  //   return fetchReviewsLoader(dispatch, () => {}, api)
-  //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(1);
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.LOAD_REVIEWS,
-  //         payload: reviewsMock,
-  //       });
-  //     });
-  // });
+    return fetchReviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: reviewsMock,
+        });
+      });
+  });
 
-  // Исправить ошибку
-  // it(`Should make a correct API call to /hotels/id/nearby`, () => {
-  //   const apiMock = new MockAdapter(api);
-  //   const dispatch = jest.fn();
-  //   const fetchNearbyOffersLoader = fetchNearbyOffers(1);
+  // Заменила на круглые скобки
+  it(`Should make a correct API call to /hotels/id/nearby`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchNearbyOffersLoader = fetchNearbyOffers(1);
 
-  //   apiMock
-  //     .onGet(`/hotels/1/nearby`)
-  //     .reply(200, offersMock);
+    apiMock
+      .onGet(`/hotels/1/nearby`)
+      .reply(200, offersMock);
 
-  //   return fetchNearbyOffersLoader(dispatch, () => {}, api)
-  //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(1);
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.LOAD_NEARBY_OFFERS,
-  //         payload: offersMock,
-  //       });
-  //     });
-  // });
+    return fetchNearbyOffersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_NEARBY_OFFERS,
+          payload: offersMock,
+        });
+      });
+  });
 
   it(`Should make a correct API call to /favorite`, () => {
     const apiMock = new MockAdapter(api);
@@ -387,59 +387,59 @@ describe(`Async operation catch errors correctly`, () => {
       });
   });
 
-  // Исправить ошибку
-  // it(`Should catch reviews load error`, () => {
-  //   const apiMock = new MockAdapter(api);
-  //   const dispatch = jest.fn();
-  //   const fetchReviewsLoader = fetchReviews(0);
+  // Заменила на круглые скобки
+  it(`Should catch reviews load error`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchReviewsLoader = fetchReviews(0);
 
-  //   apiMock
-  //     .onGet(`/comments/0`)
-  //     .reply(500, `error`);
+    apiMock
+      .onGet(`/comments/0`)
+      .reply(500, `error`);
 
-  //   return fetchReviewsLoader(dispatch, () => {}, api)
-  //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(2);
+    return fetchReviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
 
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.LOAD_REVIEWS,
-  //         payload: [],
-  //       });
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: [],
+        });
 
-  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
-  //         type: ActionType.SET_ERROR,
-  //         payload: `error`
-  //       });
-  //     });
-  // });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_ERROR,
+          payload: `Request failed with status code 500`
+        });
+      });
+  });
 
-  // Исправить ошибку
-  // it(`Should catch nearby offers load error`, () => {
-  //   const apiMock = new MockAdapter(api);
-  //   const dispatch = jest.fn();
-  //   const fetchReviewsLoader = fetchReviews(0);
+  // Заменила на круглые скобки
+  it(`Should catch nearby offers load error`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const fetchNearbyOffersLoader = fetchNearbyOffers(0);
 
-  //   apiMock
-  //     .onGet(`/hotels/0/nearby`)
-  //     .reply(500, `error`);
+    apiMock
+      .onGet(`/hotels/0/nearby`)
+      .reply(500, `error`);
 
-  //   return fetchReviewsLoader(dispatch, () => {}, api)
-  //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(2);
+    return fetchNearbyOffersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
 
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.LOAD_NEARBY_OFFERS,
-  //         payload: [],
-  //       });
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_NEARBY_OFFERS,
+          payload: [],
+        });
 
-  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
-  //         type: ActionType.SET_ERROR,
-  //         payload: `error`
-  //       });
-  //     });
-  // });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_ERROR,
+          payload: `Request failed with status code 500`
+        });
+      });
+  });
 
-  // Исправить ошибку
+  // // Исправить ошибку
   // it(`Should catch network problems error when post comment`, () => {
   //   const apiMock = new MockAdapter(api);
   //   const dispatch = jest.fn();
@@ -450,23 +450,23 @@ describe(`Async operation catch errors correctly`, () => {
   //     .reply(400, {});
 
   //   return postCommentLoader(dispatch, () => {}, api)
-  //     .then(() => {
-  //       expect(dispatch).toHaveBeenCalledTimes(3);
-
-  //       expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //         type: ActionType.LOAD_COMMENT,
-  //         payload: false
-  //       });
-
-  //       expect(dispatch).toHaveBeenNthCalledWith(2, {
-  //         type: ActionType.SET_ERROR,
-  //         payload: `error`
-  //       });
-
-  //       expect(dispatch).toHaveBeenNthCalledWith(3, {
-  //         payload: {}
-  //       });
+  //   .then(() => {
+  //     expect(dispatch).toHaveBeenCalledTimes(3);
+  //     expect(dispatch).toHaveBeenNthCalledWith(1, {
+  //       type: ActionType.LOAD_COMMENT,
+  //       payload: true
   //     });
+  //   })
+  //   .then(() => {
+  //     expect(dispatch).toHaveBeenNthCalledWith(2, {
+  //       type: ActionType.SET_ERROR,
+  //       payload: `Invalid data format`
+  //     });
+
+  //     expect(dispatch).toHaveBeenNthCalledWith(3, {
+  //       payload: {}
+  //     });
+  //   });
   // });
 
   it(`Should catch no authorization status when mark offer as favorite`, () => {

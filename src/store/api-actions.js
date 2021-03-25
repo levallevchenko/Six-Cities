@@ -20,23 +20,23 @@ export const fetchOffer = (id) => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setNotFoundOffer()))
 );
 
-export const fetchReviews = (id) => (dispatch, _getState, api) => {
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(ActionCreator.loadReviews(data)))
     .catch((err) => {
       dispatch(ActionCreator.loadReviews([]));
       dispatch(ActionCreator.setError(err.message));
-    });
-};
+    })
+);
 
-export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => {
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}/nearby`)
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(data)))
     .catch((err) => {
       dispatch(ActionCreator.loadNearbyOffers([]));
       dispatch(ActionCreator.setError(err.message));
-    });
-};
+    })
+);
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITES)
