@@ -440,34 +440,32 @@ describe(`Async operation catch errors correctly`, () => {
   });
 
   // // Исправить ошибку
-  // it(`Should catch network problems error when post comment`, () => {
-  //   const apiMock = new MockAdapter(api);
-  //   const dispatch = jest.fn();
-  //   const postCommentLoader = postComment(reviewDataMock, 0);
+  it(`Should catch network problems error when post comment`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const postCommentLoader = postComment(reviewDataMock, 0);
 
-  //   apiMock
-  //     .onPost(`/comments/0`)
-  //     .reply(400, {});
+    apiMock
+      .onPost(`/comments/0`)
+      .reply(400, ``);
 
-  //   return postCommentLoader(dispatch, () => {}, api)
-  //   .then(() => {
-  //     expect(dispatch).toHaveBeenCalledTimes(3);
-  //     expect(dispatch).toHaveBeenNthCalledWith(1, {
-  //       type: ActionType.LOAD_COMMENT,
-  //       payload: true
-  //     });
-  //   })
-  //   .then(() => {
-  //     expect(dispatch).toHaveBeenNthCalledWith(2, {
-  //       type: ActionType.SET_ERROR,
-  //       payload: `Invalid data format`
-  //     });
-
-  //     expect(dispatch).toHaveBeenNthCalledWith(3, {
-  //       payload: {}
-  //     });
-  //   });
-  // });
+    return postCommentLoader(dispatch, () => {}, api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(3);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_COMMENT,
+        payload: true
+      });
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.LOAD_COMMENT,
+        payload: false
+      });
+      expect(dispatch).toHaveBeenNthCalledWith(3, {
+        type: ActionType.SET_ERROR,
+        payload: `Invalid data format`
+      });
+    });
+  });
 
   it(`Should catch no authorization status when mark offer as favorite`, () => {
     const apiMock = new MockAdapter(api);
