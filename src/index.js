@@ -8,7 +8,6 @@ import {redirect} from "./store/middlewares/redirect";
 import {createAPI} from './services/api';
 import {AuthorizationStatus} from "./const";
 import App from './components/app/app';
-// Оставила моки только для favorites, позже получу с сервера
 import {offers} from '../src/mocks/offers';
 
 const api = createAPI(

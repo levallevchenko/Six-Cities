@@ -22,8 +22,6 @@ const ReviewForm = () => {
   const isReviewLengthOk = reviewLength >= ReviewLength.MIN && reviewLength <= ReviewLength.MAX;
   const isSubmitNotDisabled = userForm.rating && userForm.review && isReviewLengthOk && !isCommentLoading;
 
-  console.log(isReviewLengthOk, isSubmitNotDisabled);
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(postComment(userForm, offer.hotelId)).then(() => setUserForm({...initialState}));
