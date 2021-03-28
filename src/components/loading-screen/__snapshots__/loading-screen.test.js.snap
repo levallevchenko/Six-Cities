@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should LoadingScreen render correctly 1`] = `
+<div>
+  <div
+    class="sweet-loading"
+  >
+    <span
+      class="css-140o8qj-override"
+    >
+      <span
+        class="css-172w9aw"
+      />
+      <span
+        class="css-1bdu5kf"
+      />
+    </span>
+  </div>
+</div>
+`;
