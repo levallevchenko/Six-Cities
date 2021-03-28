@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {offerPropTypes} from '../../prop-types/offer';
 import {CardType} from '../../const';
 import {fetchFavorites} from '../../store/api-actions';
 import {getFavoriteOfferCities} from '../../store/offers/selectors';
@@ -40,13 +38,6 @@ const Favorites = () => {
       </footer>
     </div>
   );
-};
-
-Favorites.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  activeCity: PropTypes.string,
-  isOffersLoaded: PropTypes.bool,
-  onLoadOffers: PropTypes.func,
 };
 
 export default Favorites;
