@@ -8,7 +8,6 @@ import {redirect} from "./store/middlewares/redirect";
 import {createAPI} from './services/api';
 import {AuthorizationStatus} from "./const";
 import App from './components/app/app';
-import {offers} from '../src/mocks/offers';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -26,7 +25,7 @@ const store = configureStore({
 
 ReactDOM.render(
     <Provider store={store}>
-      <App offers={offers} />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );
