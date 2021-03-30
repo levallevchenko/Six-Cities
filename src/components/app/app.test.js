@@ -8,7 +8,6 @@ import configureStore from 'redux-mock-store';
 import {NameSpace} from '../../store/root-reducer';
 import {AuthorizationStatus} from '../../const';
 import App from './app';
-import '@testing-library/jest-dom';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -53,6 +52,7 @@ describe(`Test routing`, () => {
         offer: {
           city: {location: {}},
           hotelImages: [],
+          hotelId: 1,
           goods: [],
           host: {isUserPro: true},
           location: {
