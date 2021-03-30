@@ -16,3 +16,9 @@ export const sortOffers = (offers, sortingType) => {
       return [...offers];
   }
 };
+
+export const sortReviews = (reviews) => [...reviews].sort((previusReview, currentReview) => {
+  const previusReviewDate = new Date(previusReview.date);
+  const currentReviewDate = new Date(currentReview.date);
+  return (currentReviewDate - previusReviewDate);
+});
