@@ -4,7 +4,7 @@ import {offerPropTypes} from '../../prop-types/offer';
 import Offer from '../offer/offer';
 
 const OfferList = (props) => {
-  const {cityOffers, CardType, onOfferFocus, onOfferBlur} = props;
+  const {cityOffers, сardType, onOfferFocus, onOfferBlur} = props;
 
   return (
     <React.Fragment>
@@ -14,7 +14,7 @@ const OfferList = (props) => {
           onOfferBlur={onOfferBlur}
           key={offer.hotelId}
           offer={offer}
-          CardType={CardType} />)}
+          сardType={сardType} />)}
       </div>
     </React.Fragment>
   );
@@ -22,7 +22,7 @@ const OfferList = (props) => {
 
 OfferList.propTypes = {
   cityOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  CardType: PropTypes.string.isRequired,
+  сardType: PropTypes.string.isRequired,
   onOfferFocus: PropTypes.func.isRequired,
   onOfferBlur: PropTypes.func.isRequired,
 };

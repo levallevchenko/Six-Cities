@@ -6,7 +6,7 @@ import {offerPropTypes} from '../../prop-types/offer';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 
 const Offer = (props) => {
-  const {offer, CardType, onOfferFocus = () => {}, onOfferBlur} = props;
+  const {offer, сardType, onOfferFocus = () => {}, onOfferBlur} = props;
   const {previewSrc, price, hotelName, hotelId, isPremium, offerType, rating} = offer;
   const roomLink = `/offer/${hotelId}`;
   const ratingStarWidth = `${Math.round(rating) * 20}%`;
@@ -21,14 +21,14 @@ const Offer = (props) => {
       onMouseEnter = {handleOfferFocus}
       onBlur={onOfferBlur}
       onMouseLeave={onOfferBlur}
-      className={classNames(`place-card`, {'favorites__card': CardType === `FAVORITE`, 'cities__place-card': CardType === `MAIN`})}>
+      className={classNames(`place-card`, {'favorites__card': сardType === `FAVORITE`, 'cities__place-card': сardType === `MAIN`})}>
       {isPremium && getPremiumElement()}
-      <div className={classNames(`place-card__image-wrapper`, {'favorites__image-wrapper': CardType === `FAVORITE`, 'cities__image-wrapper': CardType === `MAIN`})}>
+      <div className={classNames(`place-card__image-wrapper`, {'favorites__image-wrapper': сardType === `FAVORITE`, 'cities__image-wrapper': сardType === `MAIN`})}>
         <Link to={roomLink}>
-          <img className="place-card__image" src={previewSrc} width={CardType === `FAVORITE` ? 150 : 260} height={CardType === `FAVORITE` ? 110 : 200} alt="Place image" />
+          <img className="place-card__image" src={previewSrc} width={сardType === `FAVORITE` ? 150 : 260} height={сardType === `FAVORITE` ? 110 : 200} alt="Place image" />
         </Link>
       </div>
-      <div className={classNames(`place-card__info`, {'favorites__card-info': CardType === `FAVORITE`})}>
+      <div className={classNames(`place-card__info`, {'favorites__card-info': сardType === `FAVORITE`})}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{price}</b>
@@ -53,7 +53,7 @@ const Offer = (props) => {
 
 Offer.propTypes = {
   offer: offerPropTypes,
-  CardType: PropType.string.isRequired,
+  сardType: PropType.string.isRequired,
   onOfferFocus: PropType.func,
   onOfferBlur: PropType.func,
 };

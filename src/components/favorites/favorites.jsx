@@ -26,7 +26,7 @@ const Favorites = () => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {favoriteOffersCities.map((city, id) => <CityFavorites key={city + id} offers={getFavoriteOffersInCity(city)} CardType={CardType.FAVORITE} city={city} />)}
+              {favoriteOffersCities.map((city, id) => <CityFavorites key={city + id} offers={getFavoriteOffersInCity(city)} сardType={CardType.FAVORITE} city={city} />)}
             </ul>
           </section>
         </div>
