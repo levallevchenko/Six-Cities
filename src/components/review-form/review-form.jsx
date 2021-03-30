@@ -34,7 +34,7 @@ const ReviewForm = () => {
 
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
-    setUserForm({...userForm, [name]: value});
+    setUserForm({...userForm, [name]: +value});
   };
 
   const {review, rating} = userForm;
