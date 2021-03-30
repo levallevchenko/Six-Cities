@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import {getCityOffers, sortOffers, sortReviews} from '../../utils/project';
-import {getUniqueArray} from '../../utils/common';
+import {getUniqueArray} from '../../utils/project';
 import {NameSpace} from '../root-reducer';
 
 const offersState = (state) => state[NameSpace.OFFERS];

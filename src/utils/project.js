@@ -1,5 +1,11 @@
 import {SortingType} from '../const';
 
+export const getUniqueArray = (array) => {
+  const arraySet = new Set(array);
+  const uniqueArray = Array.from(arraySet);
+  return uniqueArray;
+};
+
 export const getCityOffers = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
