@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {CardType} from '../../const';
-import {fetchFavorites} from '../../store/api-actions';
 import {getFavoriteOfferCities} from '../../store/offers/selectors';
 import Header from '../header/header';
 import CityFavorites from '../city-favorites/city-favorites';
@@ -10,13 +9,8 @@ import CityFavorites from '../city-favorites/city-favorites';
 const Favorites = () => {
   const {favoriteOffers} = useSelector((state) => state.OFFERS);
   const favoriteOffersCities = useSelector(getFavoriteOfferCities);
-  const dispatch = useDispatch();
 
   const getFavoriteOffersInCity = (city) => favoriteOffers.filter((offer) => offer.city.name === city);
-
-  useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [favoriteOffers]);
 
   return (
     <div className="page">
