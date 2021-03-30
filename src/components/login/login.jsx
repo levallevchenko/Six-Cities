@@ -40,6 +40,7 @@ const Login = () => {
                   name="email"
                   placeholder="Email"
                   autoComplete="off"
+                  data-testid="login"
                   required />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -51,6 +52,7 @@ const Login = () => {
                   name="password"
                   placeholder="Password"
                   autoComplete="off"
+                  data-testid="password"
                   required />
               </div>
               <button

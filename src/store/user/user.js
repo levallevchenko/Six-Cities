@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {AuthorizationStatus} from '../../const';
 import {ActionType} from '../action';
 
-const initialState = {
+export const initialState = {
   authStatus: AuthorizationStatus.NO_AUTH,
   authInfo: {},
   isAuthInfoLoaded: false,
