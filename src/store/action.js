@@ -17,6 +17,7 @@ export const ActionType = {
   LOAD_AUTH_INFO: `user/loadAuthInfo`,
   REDIRECT_TO_ROUTE: `app/redirectToRoute`,
   SET_ERROR: `app/setError`,
+  CHECK_LOGIN: `user/checkLogin`,
 };
 
 export const ActionCreator = {
@@ -89,5 +90,9 @@ export const ActionCreator = {
   setError: (error) => ({
     type: ActionType.SET_ERROR,
     payload: error
+  }),
+  checkLogin: (value) => ({
+    type: ActionType.CHECK_LOGIN,
+    payload: value
   })
 };

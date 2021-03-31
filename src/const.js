@@ -54,3 +54,5 @@ export const FavoriteStatus = {
   REMOVE: `0`,
   ADD: `1`
 };
+
+export const REG = /^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/;
