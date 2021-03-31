@@ -6,6 +6,7 @@ export const initialState = {
   authStatus: AuthorizationStatus.NO_AUTH,
   authInfo: {},
   isAuthInfoLoaded: false,
+  isCorrectValue: false,
 };
 
 const user = createReducer(initialState, (builder) => {
@@ -18,6 +19,9 @@ const user = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.LOAD_AUTH_INFO, (state, action) => {
     state.isAuthInfoLoaded = action.payload;
+  });
+  builder.addCase(ActionType.CHECK_LOGIN, (state, action) => {
+    state.isCorrectValue = action.payload;
   });
 });
 

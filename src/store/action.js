@@ -6,12 +6,10 @@ export const ActionType = {
   LOAD_REVIEWS: `offers/loadReviews`,
   LOAD_NEARBY_OFFERS: `offers/loadNearbyOffers`,
   LOAD_FAVORITE_OFFERS: `offers/loadFavoriteOffers`,
-  SET_FAVORITE: `offers/setFavorite`,
   ADD_FAVORITE: `offers/addFavorite`,
   REMOVE_FAVORITE: `offers/removeFavorite`,
   SET_COMMENT: `offers/setComment`,
   LOAD_COMMENT: `offers/loadComment`,
-  SUBMIT_COMMENT: `offers/submitComment`,
   SET_NOT_FOUND_OFFER: `offers/setNotFoundOffer`,
   SET_OFFERS_LOADING_FAILED: `offers/setOffersLoadingFailed`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
@@ -19,6 +17,7 @@ export const ActionType = {
   LOAD_AUTH_INFO: `user/loadAuthInfo`,
   REDIRECT_TO_ROUTE: `app/redirectToRoute`,
   SET_ERROR: `app/setError`,
+  CHECK_LOGIN: `user/checkLogin`,
 };
 
 export const ActionCreator = {
@@ -50,10 +49,6 @@ export const ActionCreator = {
     type: ActionType.LOAD_FAVORITE_OFFERS,
     payload: favorites,
   }),
-  setFavorite: (favorite) => ({
-    type: ActionType.SET_FAVORITE,
-    payload: favorite
-  }),
   addFavorite: (offer) => ({
     type: ActionType.ADD_FAVORITE,
     payload: offer
@@ -68,10 +63,6 @@ export const ActionCreator = {
   }),
   loadComment: (info) => ({
     type: ActionType.LOAD_COMMENT,
-    payload: info
-  }),
-  submitComment: (info) => ({
-    type: ActionType.SUBMIT_COMMENT,
     payload: info
   }),
   setNotFoundOffer: () => ({
@@ -99,5 +90,9 @@ export const ActionCreator = {
   setError: (error) => ({
     type: ActionType.SET_ERROR,
     payload: error
+  }),
+  checkLogin: (value) => ({
+    type: ActionType.CHECK_LOGIN,
+    payload: value
   })
 };

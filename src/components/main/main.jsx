@@ -63,7 +63,7 @@ const Main = () => {
                 <OfferSorting />
                 <OfferList
                   cityOffers={cityOffers}
-                  CardType = {CardType.MAIN}
+                  сardType = {CardType.MAIN}
                   onOfferFocus ={handleOfferFocus}
                   onOfferBlur={handleOfferBlur} />
               </section>

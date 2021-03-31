@@ -1,5 +1,11 @@
 import {SortingType} from '../const';
 
+export const getUniqueArray = (array) => {
+  const arraySet = new Set(array);
+  const uniqueArray = Array.from(arraySet);
+  return uniqueArray;
+};
+
 export const getCityOffers = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
@@ -16,3 +22,9 @@ export const sortOffers = (offers, sortingType) => {
       return [...offers];
   }
 };
+
+export const sortReviews = (reviews) => [...reviews].sort((previusReview, currentReview) => {
+  const previusReviewDate = new Date(previusReview.date);
+  const currentReviewDate = new Date(currentReview.date);
+  return (currentReviewDate - previusReviewDate);
+});

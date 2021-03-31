@@ -64,15 +64,6 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.loadFavoriteOffers(`test`)).toEqual(expectedAction);
   });
 
-  it(`setFavorite action creator returns correct action`, () => {
-    const expectedAction = {
-      type: ActionType.SET_FAVORITE,
-      payload: `test`,
-    };
-
-    expect(ActionCreator.setFavorite(`test`)).toEqual(expectedAction);
-  });
-
   it(`addFavorite action creator returns correct action`, () => {
     const expectedAction = {
       type: ActionType.ADD_FAVORITE,
@@ -109,15 +100,6 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.loadComment(`test`)).toEqual(expectedAction);
   });
 
-  it(`submitComment action creator returns correct action`, () => {
-    const expectedAction = {
-      type: ActionType.SUBMIT_COMMENT,
-      payload: `test`,
-    };
-
-    expect(ActionCreator.submitComment(`test`)).toEqual(expectedAction);
-  });
-
   it(`setNotFoundOffer action creator returns correct action`, () => {
     const expectedAction = {
       type: ActionType.SET_NOT_FOUND_OFFER,
@@ -141,15 +123,6 @@ describe(`Action creators work correctly`, () => {
     };
 
     expect(ActionCreator.setAuthInfo(`test`)).toEqual(expectedAction);
-  });
-
-  it(`loadAuthInfo action creator returns correct action`, () => {
-    const expectedAction = {
-      type: ActionType.LOAD_AUTH_INFO,
-      payload: `test`,
-    };
-
-    expect(ActionCreator.loadAuthInfo(`test`)).toEqual(expectedAction);
   });
 
   it(`requireAuthorization action creator returns correct action`, () => {
