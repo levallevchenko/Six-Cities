@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Review should render correctly 1`] = `
+<div>
+  <li
+    class="reviews__item"
+  >
+    <div
+      class="reviews__user user"
+    >
+      <div
+        class="reviews__avatar-wrapper user__avatar-wrapper"
+      >
+        <img
+          alt="Reviews avatar"
+          class="reviews__avatar user__avatar"
+          height="54"
+          width="54"
+        />
+      </div>
+      <span
+        class="reviews__user-name"
+      />
+    </div>
+    <div
+      class="reviews__info"
+    >
+      <div
+        class="reviews__rating rating"
+      >
+        <div
+          class="reviews__stars rating__stars"
+        >
+          <span />
+          <span
+            class="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <p
+        class="reviews__text"
+      />
+      <time
+        class="reviews__time"
+        datetime=""
+      >
+        Invalid Date
+      </time>
+    </div>
+  </li>
+</div>
+`;

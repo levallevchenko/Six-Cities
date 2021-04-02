@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainEmpty should render correctly 1`] = `
+<div>
+  <div
+    class="cities__places-container cities__places-container--empty container"
+  >
+    <section
+      class="cities__no-places"
+    >
+      <div
+        class="cities__status-wrapper tabs__content"
+      >
+        <b
+          class="cities__status"
+        >
+          Failed to load offers. Please, try reloading the page
+        </b>
+      </div>
+    </section>
+    <div
+      class="cities__right-section"
+    />
+  </div>
+</div>
+`;

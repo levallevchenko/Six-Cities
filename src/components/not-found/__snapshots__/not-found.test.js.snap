@@ -7,6 +7,7 @@ exports[`NotFound page should render correctly 1`] = `
   >
     <header
       class="header"
+      data-testid="header"
     >
       <div
         class="container"
@@ -24,6 +25,7 @@ exports[`NotFound page should render correctly 1`] = `
               <img
                 alt="6 cities logo"
                 class="header__logo"
+                data-testid="header-logo"
                 height="41"
                 src="img/logo.svg"
                 width="81"
@@ -32,6 +34,7 @@ exports[`NotFound page should render correctly 1`] = `
           </div>
           <nav
             class="header__nav"
+            data-testid="header-nav"
           >
             <ul
               class="header__nav-list"
