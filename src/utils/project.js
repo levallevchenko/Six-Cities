@@ -24,7 +24,7 @@ export const sortOffers = (offers, sortingType) => {
 };
 
 export const sortReviews = (reviews) =>
-  [reviews].sort((previusReview, currentReview) => {
+  [...reviews].sort((previusReview, currentReview) => {
     const previusReviewDate = new Date(previusReview.date);
     const currentReviewDate = new Date(currentReview.date);
     return (currentReviewDate - previusReviewDate);

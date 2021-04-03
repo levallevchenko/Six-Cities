@@ -18,6 +18,11 @@ describe(`Room component test`, () => {
     const history = createMemoryHistory();
 
     const testOffer = {
+      city: {
+        name: `Paris`,
+        location: {latitude: 1, longitude: 1}
+      },
+      location: {latitude: 1, longitude: 1},
       hotelId: 1,
       hotelName: ``,
       rating: ``,
@@ -30,10 +35,12 @@ describe(`Room component test`, () => {
       description: ``,
       isPremium: true,
       hotelImages: [],
-      city: ``,
     };
 
-    const testNearbyOffers = [{hotelId: 1}, {hotelId: 2}];
+    const testNearbyOffers = [
+      {hotelId: 1, location: {latitude: 1, longitude: 1}},
+      {hotelId: 2, location: {latitude: 2, longitude: 2}},
+    ];
 
     const store = mockStore({
       [NameSpace.APP]: {
@@ -41,29 +48,26 @@ describe(`Room component test`, () => {
       },
       [NameSpace.USER]: {
         authStatus: AuthorizationStatus.AUTH,
+        authInfo: {email: `test`, password: `test`}
       },
       [NameSpace.OFFERS]: {
         favoriteOffers: [{}, {}],
-        reviews: [{
-          id: 1,
-          user: {userId: 1, avatarUrl: `1`},
-          date: `1`},
-        {
-          id: 2,
-          user: {userId: 2, avatarUrl: `2`},
-          date: `2`
-        }]
+        offer: {},
+        reviews: [
+          {id: 1, user: {avatarUrl: `1`}, date: `1`},
+          {id: 2, user: {avatarUrl: `2`}, date: `2`}
+        ],
       },
     });
 
     render(
         <redux.Provider store={store}>
           <Router history={history}>
-            <Room offer={testOffer} nearbyOffers={testNearbyOffers} />
+            <Room location={testOffer.location} offer={testOffer} nearbyOffers={testNearbyOffers} />
           </Router>
         </redux.Provider>
     );
 
-    expect(screen.getByText(`Paris`)).toBeInTheDocument();
+    expect(screen.getByText(`Meet the host`)).toBeInTheDocument();
   });
 });

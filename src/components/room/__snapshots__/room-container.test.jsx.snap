@@ -1,0 +1,545 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomContainer should render correctly 1`] = `
+<div>
+  <div
+    class="page"
+  >
+    <header
+      class="header"
+      data-testid="header"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="header__wrapper"
+        >
+          <div
+            class="header__left"
+          >
+            <a
+              class="header__logo-link"
+              href="/"
+            >
+              <img
+                alt="6 cities logo"
+                class="header__logo"
+                data-testid="header-logo"
+                height="41"
+                src="img/logo.svg"
+                width="81"
+              />
+            </a>
+          </div>
+          <nav
+            class="header__nav"
+            data-testid="header-nav"
+          >
+            <ul
+              class="header__nav-list"
+            >
+              <li
+                class="header__nav-item user"
+              >
+                <a
+                  class="header__nav-link header__nav-link--profile"
+                  href="/favorites"
+                >
+                  <div
+                    class="header__avatar-wrapper user__avatar-wrapper"
+                  />
+                  <span
+                    class="header__user-name user__name"
+                  >
+                    Sign in
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main
+      class="page__main page__main--property"
+    >
+      <section
+        class="property"
+      >
+        <div
+          class="property__gallery-container container"
+        >
+          <div
+            class="property__gallery"
+          />
+        </div>
+        <div
+          class="property__container container"
+        >
+          <div
+            class="property__wrapper"
+          >
+            <div
+              class="property__name-wrapper"
+            >
+              <h1
+                class="property__name"
+              />
+              <button
+                class="property__bookmark-button button"
+                type="button"
+              >
+                <svg
+                  class="property__bookmark-icon"
+                  height="33"
+                  width="31"
+                >
+                  <use
+                    xlink:href="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  class="visually-hidden"
+                >
+                  To bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              class="property__rating rating"
+            >
+              <div
+                class="property__stars rating__stars"
+              >
+                <span />
+                <span
+                  class="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+              <span
+                class="property__rating-value rating__value"
+              />
+            </div>
+            <ul
+              class="property__features"
+            >
+              <li
+                class="property__feature property__feature--entire"
+              />
+              <li
+                class="property__feature property__feature--bedrooms"
+              />
+              <li
+                class="property__feature property__feature--adults"
+              />
+            </ul>
+            <div
+              class="property__price"
+            >
+              <b
+                class="property__price-value"
+              >
+                €
+              </b>
+              <span
+                class="property__price-text"
+              >
+                 night
+              </span>
+            </div>
+            <div
+              class="property__inside"
+            >
+              <h2
+                class="property__inside-title"
+              >
+                What's inside
+              </h2>
+              <ul
+                class="property__inside-list"
+              />
+            </div>
+            <div
+              class="property__host"
+            >
+              <h2
+                class="property__host-title"
+              >
+                Meet the host
+              </h2>
+              <div
+                class="property__host-user user"
+              >
+                <div
+                  class="property__avatar-wrapper user__avatar-wrapper property__avatar-wrapper--pro"
+                >
+                  <img
+                    alt="Host avatar"
+                    class="property__avatar user__avatar"
+                    height="74"
+                    width="74"
+                  />
+                </div>
+                <span
+                  class="property__user-name"
+                />
+                <span
+                  class="property__user-status"
+                >
+                  Pro
+                </span>
+              </div>
+              <div
+                class="property__description"
+              >
+                <p
+                  class="property__text"
+                />
+                <p
+                  class="property__text"
+                >
+                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                </p>
+              </div>
+            </div>
+            <section
+              class="property__reviews reviews"
+            >
+              <h2
+                class="reviews__title"
+              >
+                Reviews · 
+                <span
+                  class="reviews__amount"
+                >
+                  1
+                </span>
+              </h2>
+              <ul
+                class="reviews__list"
+              >
+                <li
+                  class="reviews__item"
+                >
+                  <div
+                    class="reviews__user user"
+                  >
+                    <div
+                      class="reviews__avatar-wrapper user__avatar-wrapper"
+                    >
+                      <img
+                        alt="Reviews avatar"
+                        class="reviews__avatar user__avatar"
+                        height="54"
+                        src=""
+                        width="54"
+                      />
+                    </div>
+                    <span
+                      class="reviews__user-name"
+                    />
+                  </div>
+                  <div
+                    class="reviews__info"
+                  >
+                    <div
+                      class="reviews__rating rating"
+                    >
+                      <div
+                        class="reviews__stars rating__stars"
+                      >
+                        <span />
+                        <span
+                          class="visually-hidden"
+                        >
+                          Rating
+                        </span>
+                      </div>
+                    </div>
+                    <p
+                      class="reviews__text"
+                    />
+                    <time
+                      class="reviews__time"
+                      datetime=""
+                    >
+                      April 2021
+                    </time>
+                  </div>
+                </li>
+              </ul>
+              
+            </section>
+          </div>
+        </div>
+        <section
+          class="map property__map leaflet-container leaflet-grab leaflet-touch-drag"
+          id="map"
+          style="height: 579px; position: relative;"
+          tabindex="0"
+        >
+          <div
+            class="leaflet-pane leaflet-map-pane"
+            style="left: 0px; top: 0px;"
+          >
+            <div
+              class="leaflet-pane leaflet-tile-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-shadow-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-overlay-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-marker-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-tooltip-pane"
+            />
+            <div
+              class="leaflet-pane leaflet-popup-pane"
+            />
+          </div>
+          <div
+            class="leaflet-control-container"
+          >
+            <div
+              class="leaflet-top leaflet-left"
+            >
+              <div
+                class="leaflet-control-zoom leaflet-bar leaflet-control"
+              >
+                <a
+                  aria-label="Zoom in"
+                  class="leaflet-control-zoom-in"
+                  href="#"
+                  role="button"
+                  title="Zoom in"
+                >
+                  +
+                </a>
+                <a
+                  aria-label="Zoom out"
+                  class="leaflet-control-zoom-out"
+                  href="#"
+                  role="button"
+                  title="Zoom out"
+                >
+                  −
+                </a>
+              </div>
+            </div>
+            <div
+              class="leaflet-top leaflet-right"
+            />
+            <div
+              class="leaflet-bottom leaflet-left"
+            />
+            <div
+              class="leaflet-bottom leaflet-right"
+            >
+              <div
+                class="leaflet-control-attribution leaflet-control"
+              >
+                <a
+                  href="https://leafletjs.com"
+                  title="A JS library for interactive maps"
+                >
+                  Leaflet
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <div
+        class="container"
+      >
+        <section
+          class="near-places places"
+        >
+          <h2
+            class="near-places__title"
+          >
+            Other places in the neighbourhood
+          </h2>
+          <div
+            class="near-places__list places__list"
+          >
+            <article
+              class="place-card cities__place-card"
+            >
+              <div
+                class="place-card__image-wrapper cities__image-wrapper"
+              >
+                <a
+                  href="/offer/1"
+                >
+                  <img
+                    alt="Place image"
+                    class="place-card__image"
+                    height="200"
+                    width="260"
+                  />
+                </a>
+              </div>
+              <div
+                class="place-card__info"
+              >
+                <div
+                  class="place-card__price-wrapper"
+                >
+                  <div
+                    class="place-card__price"
+                  >
+                    <b
+                      class="place-card__price-value"
+                    >
+                      €
+                    </b>
+                    <span
+                      class="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    class="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      class="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlink:href="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      class="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="place-card__rating rating"
+                >
+                  <div
+                    class="place-card__stars rating__stars"
+                  >
+                    <span />
+                    <span
+                      class="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  class="place-card__name"
+                >
+                  <a
+                    href="/offer/1"
+                  />
+                </h2>
+                <p
+                  class="place-card__type"
+                />
+              </div>
+            </article>
+            <article
+              class="place-card cities__place-card"
+            >
+              <div
+                class="place-card__image-wrapper cities__image-wrapper"
+              >
+                <a
+                  href="/offer/2"
+                >
+                  <img
+                    alt="Place image"
+                    class="place-card__image"
+                    height="200"
+                    width="260"
+                  />
+                </a>
+              </div>
+              <div
+                class="place-card__info"
+              >
+                <div
+                  class="place-card__price-wrapper"
+                >
+                  <div
+                    class="place-card__price"
+                  >
+                    <b
+                      class="place-card__price-value"
+                    >
+                      €
+                    </b>
+                    <span
+                      class="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    class="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      class="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlink:href="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      class="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="place-card__rating rating"
+                >
+                  <div
+                    class="place-card__stars rating__stars"
+                  >
+                    <span />
+                    <span
+                      class="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  class="place-card__name"
+                >
+                  <a
+                    href="/offer/2"
+                  />
+                </h2>
+                <p
+                  class="place-card__type"
+                />
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+`;

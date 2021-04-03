@@ -5,25 +5,37 @@ import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import * as redux from 'react-redux';
 import {NameSpace} from '../../store/root-reducer';
-import Main from './main';
+import Offer from './offer';
 
 const mockStore = configureStore();
 
 jest.spyOn(redux, `useSelector`);
 jest.spyOn(redux, `useDispatch`);
 
-it(`Main should render correctly`, () => {
+it(`Offer should render correctly`, () => {
+  const testOffer = {
+    previewSrc: `test`,
+    hotelId: 1,
+  };
+
+  const testProps = {
+    testOffer,
+    сardType: `test`,
+    onOfferFocus: jest.fn(),
+    onOfferBlur: jest.fn()
+  };
 
   const store = mockStore({
     [NameSpace.USER]: {
       authInfo: {},
     },
     [NameSpace.OFFERS]: {
-      offers: [{city: {name: `test`}}],
-      favoriteOffers: [],
-      activeCity: ``,
-      isOffersLoaded: true,
-      isOffersLoadingFailed: false,
+      favoriteOffers: [{
+        city: {
+          name: `test`
+        },
+        hotelId: 1
+      }],
     },
   });
 
@@ -32,10 +44,10 @@ it(`Main should render correctly`, () => {
   render(
       <redux.Provider store={store}>
         <Router history={history}>
-          <Main />
+          <Offer offer={testOffer} cardType={testProps.сardType} onOfferFocus={testProps.onOfferFocus} />
         </Router>
       </redux.Provider>
   );
 
-  expect(screen.getByText(`Paris`)).toBeInTheDocument();
+  expect(screen.getByText(`/ night`)).toBeInTheDocument();
 });
