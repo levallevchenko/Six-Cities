@@ -108,6 +108,15 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.setNotFoundOffer()).toEqual(expectedAction);
   });
 
+  it(`loadAuthInfo action creator returns correct action`, () => {
+    const expectedAction = {
+      type: ActionType.LOAD_AUTH_INFO,
+      payload: `test`,
+    };
+
+    expect(ActionCreator.loadAuthInfo(`test`)).toEqual(expectedAction);
+  });
+
   it(`setOffersLoadingFailed action creator returns correct action`, () => {
     const expectedAction = {
       type: ActionType.SET_OFFERS_LOADING_FAILED,
