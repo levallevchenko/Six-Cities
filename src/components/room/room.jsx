@@ -14,7 +14,7 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 
 const Room = (props) => {
   const IMAGE_MAX_COUNT = 6;
-  const {reviews, nearbyOffers, offer} = props;
+  const {nearbyOffers, offer} = props;
 
   const {hotelId, hotelName, rating, offerType, bedrooms, maxAdults, price, goods, host, description, isPremium, hotelImages, city} = offer;
 

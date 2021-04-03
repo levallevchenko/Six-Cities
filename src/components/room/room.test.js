@@ -33,16 +33,6 @@ describe(`Room component test`, () => {
       city: ``,
     };
 
-    const testReviews = [{
-      id: 1,
-      user: {userId: 1, avatarUrl: `1`},
-      date: `1`},
-    {
-      id: 2,
-      user: {userId: 2, avatarUrl: `2`},
-      date: `2`
-    }];
-
     const testNearbyOffers = [{hotelId: 1}, {hotelId: 2}];
 
     const store = mockStore({
@@ -54,13 +44,22 @@ describe(`Room component test`, () => {
       },
       [NameSpace.OFFERS]: {
         favoriteOffers: [{}, {}],
+        reviews: [{
+          id: 1,
+          user: {userId: 1, avatarUrl: `1`},
+          date: `1`},
+        {
+          id: 2,
+          user: {userId: 2, avatarUrl: `2`},
+          date: `2`
+        }]
       },
     });
 
     render(
         <redux.Provider store={store}>
           <Router history={history}>
-            <Room offer={testOffer} reviews={testReviews} nearbyOffers={testNearbyOffers} />
+            <Room offer={testOffer} nearbyOffers={testNearbyOffers} />
           </Router>
         </redux.Provider>
     );
