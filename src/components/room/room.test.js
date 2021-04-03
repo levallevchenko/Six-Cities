@@ -54,7 +54,6 @@ describe(`Room component test`, () => {
       },
       [NameSpace.OFFERS]: {
         favoriteOffers: [{}, {}],
-        // reviews: [{user: {avatarUrl: `1`}}, {user: {avatarUrl: `2`}}]
       },
     });
 

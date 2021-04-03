@@ -108,7 +108,7 @@ const Room = (props) => {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewList reviews={reviews} />
+                <ReviewList />
                 {authStatus === AuthorizationStatus.AUTH
                   ? <ReviewForm id={hotelId} />
                   : ``

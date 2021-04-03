@@ -8,7 +8,6 @@ import ReviewList from './review-list';
 const mockStore = configureStore({});
 jest.spyOn(redux, `useSelector`);
 it(`ReviewList should render correctly`, () => {
-  const testReviews = [{id: 1, user: {userId: 1, avatarUrl: `1`}}, {userId: 2, user: {avatarUrl: `2`}}];
   const store = mockStore({
     [NameSpace.APP]: {
       error: false,
@@ -21,7 +20,7 @@ it(`ReviewList should render correctly`, () => {
 
   const {container} = render(
       <redux.Provider store={store}>
-        <ReviewList reviews={testReviews} />
+        <ReviewList />
       </redux.Provider>
   );
 
