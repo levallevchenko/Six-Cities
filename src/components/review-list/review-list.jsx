@@ -6,11 +6,11 @@ import {MAX_REVIEW_COUNT} from '../../const';
 import Review from '../review/review';
 import {getSortedReviews} from '../../store/offers/selectors';
 
-const ReviewList = ({reviews}) => {
-  const isMaxReviews = reviews.length > MAX_REVIEW_COUNT;
-  const reviewsCount = isMaxReviews ? MAX_REVIEW_COUNT : reviews.length;
-
+const ReviewList = () => {
   const sortedReviews = useSelector(getSortedReviews);
+  const isMaxReviews = sortedReviews.length > MAX_REVIEW_COUNT;
+  const reviewsCount = isMaxReviews ? MAX_REVIEW_COUNT : sortedReviews.length;
+
   const maxReviews = isMaxReviews ? sortedReviews.slice(0, MAX_REVIEW_COUNT) : sortedReviews;
 
   const {error} = useSelector((state) => state.APP);
@@ -23,7 +23,7 @@ const ReviewList = ({reviews}) => {
           : <>Reviews · <span className="reviews__amount">{reviewsCount}</span></>}
       </h2>
       <ul className="reviews__list">
-        {maxReviews.map((review) => <Review key={review.id} review={review} />)}
+        {maxReviews.map((review) => <Review key={review.id + 1} review={review} />)}
       </ul>
     </React.Fragment>
   );

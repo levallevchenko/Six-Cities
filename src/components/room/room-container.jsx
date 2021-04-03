@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
 import {fetchNearbyOffers, fetchOffer, fetchReviews} from '../../store/api-actions';
+import {useParams} from 'react-router';
 import LoadingScreen from '../loading-screen/loading-screen';
 import Room from './room';
 import NotFound from '../not-found/not-found';

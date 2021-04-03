@@ -1,4 +1,3 @@
-// import {ActionType, ActionCreator} from '../action';
 import {ActionType} from '../action';
 import {initialState, app} from './app';
 

@@ -53,7 +53,7 @@ const Offer = (props) => {
 
 Offer.propTypes = {
   offer: offerPropTypes,
-  сardType: PropType.string.isRequired,
+  сardType: PropType.string,
   onOfferFocus: PropType.func,
   onOfferBlur: PropType.func,
 };
