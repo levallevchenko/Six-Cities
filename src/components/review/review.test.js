@@ -5,7 +5,7 @@ import Review from './review';
 it(`Review should render correctly`, () => {
 
   const review = {
-    user: {},
+    user: {id: 1, avatarUrl: `1`},
     comment: ``,
     date: ``,
     reting: ``

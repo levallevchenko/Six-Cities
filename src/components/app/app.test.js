@@ -60,7 +60,7 @@ describe(`Test routing`, () => {
             longitude: 1,
           },
         },
-        reviews: [],
+        reviews: [{user: {avatarUrl: `1`}}],
         nearbyOffers: [],
         favoriteOffers: [],
         isOffersLoaded: true,
