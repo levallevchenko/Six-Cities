@@ -26,16 +26,24 @@ describe(`Room component test`, () => {
       maxAdults: 1,
       price: 1,
       goods: [],
-      host: {},
+      host: {id: 1},
       description: ``,
       isPremium: true,
       hotelImages: [],
       city: ``,
     };
 
-    const testReviews = [{id: 1, date: `1`}, {id: 2, date: `2`}];
+    const testReviews = [{
+      id: 1,
+      user: {userId: 1, avatarUrl: `1`},
+      date: `1`},
+    {
+      id: 2,
+      user: {userId: 2, avatarUrl: `2`},
+      date: `2`
+    }];
 
-    const testNearbyOffers = [{}, {}];
+    const testNearbyOffers = [{hotelId: 1}, {hotelId: 2}];
 
     const store = mockStore({
       [NameSpace.APP]: {
@@ -46,7 +54,7 @@ describe(`Room component test`, () => {
       },
       [NameSpace.OFFERS]: {
         favoriteOffers: [{}, {}],
-        reviews: [{user: {avatarUrl: `1`}}, {user: {avatarUrl: `2`}}]
+        // reviews: [{user: {avatarUrl: `1`}}, {user: {avatarUrl: `2`}}]
       },
     });
 

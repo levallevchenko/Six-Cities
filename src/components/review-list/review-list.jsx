@@ -23,7 +23,7 @@ const ReviewList = ({reviews}) => {
           : <>Reviews · <span className="reviews__amount">{reviewsCount}</span></>}
       </h2>
       <ul className="reviews__list">
-        {maxReviews.map((review) => <Review key={review.id} review={review} />)}
+        {maxReviews.map((review) => <Review key={review.id + 1} review={review} />)}
       </ul>
     </React.Fragment>
   );
