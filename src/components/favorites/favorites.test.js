@@ -21,7 +21,13 @@ it(`Favorites should render correctly`, () => {
       favoriteOffers: [{
         city: {
           name: `test`
-        }
+        },
+        hotelId: 1},
+      {
+        city: {
+          name: `test2`
+        },
+        hotelId: 2
       }],
     },
   });
