@@ -13,19 +13,19 @@ export const getCityOffers = (offers, city) => {
 export const sortOffers = (offers, sortingType) => {
   switch (sortingType) {
     case SortingType.PRICE_LOW:
-      return [...offers].sort((a, b) => (a.price - b.price));
+      return [...offers].sort((previousOffer, currentOffer) => (previousOffer.price - currentOffer.price));
     case SortingType.PRICE_HIGH:
-      return [...offers].sort((a, b) => (b.price - a.price));
+      return [...offers].sort((previousOffer, currentOffer) => (currentOffer.price - previousOffer.price));
     case SortingType.RATING:
-      return [...offers].sort((a, b) => (b.rating - a.rating));
+      return [...offers].sort((previousOffer, currentOffer) => (currentOffer.rating - previousOffer.rating));
     default:
       return [...offers];
   }
 };
 
 export const sortReviews = (reviews) =>
-  [...reviews].sort((previusReview, currentReview) => {
-    const previusReviewDate = new Date(previusReview.date);
+  [...reviews].sort((previousReview, currentReview) => {
+    const previousReviewDate = new Date(previousReview.date);
     const currentReviewDate = new Date(currentReview.date);
-    return (currentReviewDate - previusReviewDate);
+    return (currentReviewDate - previousReviewDate);
   });
