@@ -25,7 +25,7 @@ const Login = () => {
   const handleInputChange = () => {
     const loginInputElement = loginRef.current;
     const loginValue = loginInputElement.value;
-    const isCorrect = REG.test(loginValue);
+    const isCorrect = loginValue && REG.test(loginValue);
     dispatch(ActionCreator.checkLogin(isCorrect));
   };
 

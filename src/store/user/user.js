@@ -6,7 +6,7 @@ export const initialState = {
   authStatus: AuthorizationStatus.NO_AUTH,
   authInfo: {},
   isAuthInfoLoaded: false,
-  isCorrectValue: false,
+  isCorrectValue: true,
 };
 
 const user = createReducer(initialState, (builder) => {
