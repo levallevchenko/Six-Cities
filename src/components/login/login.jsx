@@ -22,7 +22,7 @@ const Login = () => {
     }));
   };
 
-  const handleInputChange = () => {
+  const handleInputBlur = () => {
     const loginInputElement = loginRef.current;
     const loginValue = loginInputElement.value;
     const isCorrect = loginValue && REG.test(loginValue);
@@ -45,7 +45,7 @@ const Login = () => {
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
-                  onChange={handleInputChange}
+                  onBlur={handleInputBlur}
                   ref={loginRef}
                   className={classNames(`login__input form__input`, {'login__input--error': !isCorrectValue})}
                   type="email"
