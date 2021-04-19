@@ -27,7 +27,7 @@ const store = configureStore({
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter history={browserHistory}>
+      <BrowserRouter history={browserHistory} basename="/Six-Cities">
         <App />
       </BrowserRouter>
     </Provider>,
