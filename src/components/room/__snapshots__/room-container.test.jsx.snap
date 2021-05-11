@@ -266,7 +266,7 @@ exports[`RoomContainer should render correctly 1`] = `
                       class="reviews__time"
                       datetime=""
                     >
-                      April 2021
+                      May 2021
                     </time>
                   </div>
                 </li>
