@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router as BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import browserHistory from './browser-history';
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
@@ -27,9 +27,9 @@ const store = configureStore({
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter history={browserHistory}>
+      <HashRouter history={browserHistory}>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>,
     document.querySelector(`#root`)
 );
